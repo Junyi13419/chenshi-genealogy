@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成氏族谱 · 广东省英德市东华镇东水村 · 详细填写版</title>
+<style>
+  :root{
+    --paper:#faf6ec; --paper2:#f3ead6; --ink:#2b241c; --ink2:#5a4f40;
+    --line:#d8cbb2; --line2:#c8bba4; --accent:#7a5c2e; --seal:#9e3b2f; --muted:#8a7e6b;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"Noto Serif SC","Songti SC","SimSun",serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  /* ===== 黑金兽纹主题背景 ===== */
+  .bg{position:fixed;inset:0;z-index:-3;pointer-events:none;}
+  .bg-base{position:absolute;inset:0;background:radial-gradient(ellipse 85% 65% at 50% 0%,#241a09 0%,#140e06 48%,#070502 100%);}
+  .bg-rays{position:absolute;inset:-25%;opacity:.32;background:conic-gradient(from 0deg at 50% 12%,
+    rgba(212,175,55,.07) 0deg,transparent 15deg,rgba(212,175,55,.03) 30deg,transparent 45deg,
+    rgba(212,175,55,.07) 60deg,transparent 75deg,rgba(212,175,55,.03) 90deg,transparent 105deg,
+    rgba(212,175,55,.07) 120deg,transparent 135deg,rgba(212,175,55,.03) 150deg,transparent 165deg,
+    rgba(212,175,55,.07) 180deg,transparent 195deg,rgba(212,175,55,.03) 210deg,transparent 225deg,
+    rgba(212,175,55,.07) 240deg,transparent 255deg,rgba(212,175,55,.03) 270deg,transparent 285deg,
+    rgba(212,175,55,.07) 300deg,transparent 315deg,rgba(212,175,55,.03) 330deg,transparent 345deg,rgba(212,175,55,.07) 360deg);
+    animation:bgRays 140s linear infinite;}
+  @keyframes bgRays{to{transform:rotate(360deg);}}
+  .bg-beast{position:absolute;inset:0;opacity:.06;background-repeat:no-repeat;background-position:center 22%;background-size:min(90vw,1000px);}
+  #bgStars{position:absolute;inset:0;}
+  #cursorGlow{position:fixed;width:460px;height:460px;border-radius:50%;pointer-events:none;z-index:-2;
+    background:radial-gradient(circle,rgba(212,175,55,.10),rgba(212,175,55,.03) 38%,transparent 66%);
+    transform:translate(-50%,-50%);transition:opacity .3s;}
+  /* 内层宣纸卡片浮于黑金底之上 */
+  .app{max-width:1440px;margin:0 auto;padding:16px 18px 40px;position:relative;z-index:1;}
+  .app>.topbar,.app>.stats,.app>.chain-card,.app>.pane,.app>.panel,.app>.listpane{box-shadow:0 6px 26px rgba(0,0,0,.45);}
+
+  /* 顶部工具条 */
+  .topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line2);border-radius:8px;padding:12px 16px;box-shadow:0 2px 10px rgba(60,45,25,.08);}
+  .brand{display:flex;align-items:baseline;gap:10px;margin-right:auto;}
+  .brand b{font-size:20px;letter-spacing:3px;color:#4a3618;}
+  .brand span{font-size:12px;color:var(--muted);letter-spacing:1px;}
+  .btn{font-family:inherit;font-size:13px;padding:7px 13px;border:1px solid var(--line2);border-radius:5px;background:#fffdf6;color:#5c4626;cursor:pointer;transition:.15s;white-space:nowrap;}
+  .btn:hover{background:var(--paper2);border-color:var(--accent);}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .btn.primary:hover{background:#63491f;}
+  .btn.danger{color:var(--seal);border-color:#d9a99f;}
+  .btn.danger:hover{background:#fbeee8;}
+  .status{font-size:12px;color:var(--muted);min-width:56px;text-align:center;}
+  .sync{font-size:12px;padding:3px 9px;border-radius:12px;background:#eef2ea;color:#4f6b45;white-space:nowrap;transition:.2s;}
+  .sync.ok{background:#e4f0dd;color:#3d6b2e;}
+  .sync.err{background:#fbeee8;color:#a13a2b;}
+  .sync.syncing{background:#f6efd8;color:#8a6a1f;}
+
+  /* 统计条 */
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 16px;font-size:13px;color:var(--ink2);}
+  .stat b{font-size:18px;color:var(--accent);margin-left:6px;}
+
+  /* 直系链 */
+  .chain-card{margin-top:14px;background:linear-gradient(180deg,#fffdf6,#f7f0e0);border:1px solid var(--line2);border-radius:8px;padding:16px 20px;}
+  .chain-card h2{margin:0 0 4px;font-size:15px;letter-spacing:2px;color:#4a3618;text-align:center;}
+  .chain-card .hint{font-size:12px;color:var(--muted);margin-bottom:12px;}
+  .chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;}
+  .node{flex:1;min-width:150px;background:#fff;border:1px solid var(--line2);border-radius:6px;padding:10px 12px;cursor:pointer;transition:.15s;}
+  .node:hover{border-color:var(--seal);box-shadow:0 2px 8px rgba(158,59,47,.12);}
+  .node .g{font-size:11px;color:var(--muted);letter-spacing:1px;}
+  .node .n{font-size:17px;font-weight:700;color:#4a3618;margin:2px 0;}
+  .node .s{font-size:12px;color:var(--ink2);}
+  .node.empty{background:#f6efe0;border-style:dashed;color:var(--muted);}
+  .arw{align-self:center;color:var(--seal);font-size:18px;font-weight:bold;}
+
+  /* 主体两栏 */
+  .main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;margin-top:16px;align-items:start;}
+  @media(max-width:1000px){.main{grid-template-columns:1fr;}}
+
+  .pane{background:var(--paper);border:1px solid var(--line2);border-radius:8px;overflow:hidden;}
+  .pane-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 14px;background:var(--paper2);border-bottom:1px solid var(--line2);}
+  .pane-head h2{margin:0;font-size:15px;letter-spacing:2px;color:#4a3618;margin-right:auto;}
+  .pane-head input,.pane-head select{font-family:inherit;font-size:13px;padding:6px 9px;border:1px solid var(--line2);border-radius:4px;background:#fffdf6;color:var(--ink);}
+  .pane-head input{width:150px;}
+
+  .list{max-height:calc(100vh - 330px);min-height:300px;overflow:auto;padding:4px 0;}
+  .group-h{position:sticky;top:0;z-index:2;background:#efe3c8;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:2px;color:#6b5427;}
+  .mem{display:flex;gap:12px;align-items:flex-start;padding:9px 14px;border-bottom:1px dashed var(--line);cursor:pointer;transition:.12s;}
+  .mem:hover{background:#fffdf6;}
+  .mem.active{background:#f7ebcc;box-shadow:inset 4px 0 var(--seal);}
+  .mem .gcol{width:56px;flex:none;font-size:12px;color:var(--accent);font-weight:700;padding-top:2px;}
+  .mem .body{flex:1;min-width:0;}
+  .mem .name{font-size:15px;font-weight:700;color:#3a2d1a;}
+  .mem .name .cou{font-size:12px;font-weight:400;color:var(--muted);margin-left:6px;}
+  .mem .sub{font-size:12px;color:var(--muted);margin-top:2px;word-break:break-all;}
+  .mem .tags{flex:none;display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
+  .tag{font-size:10px;padding:1px 6px;border-radius:3px;background:#eee6d4;color:#77684f;white-space:nowrap;}
+  .tag.direct{background:var(--seal);color:#fff;}
+  .tag.mouth{background:#5c7a52;color:#fff;}
+  .empty-tip{padding:30px;text-align:center;color:var(--muted);font-size:13px;}
+
+  /* 编辑面板 */
+  .editor{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;}
+  .editor .pane-head{background:#efe3c8;}
+  .form{padding:14px 16px 20px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
+  .field{margin-bottom:11px;}
+  .field label{display:block;font-size:12px;color:var(--accent);margin-bottom:3px;letter-spacing:1px;}
+  .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:14px;padding:7px 9px;border:1px solid var(--line2);border-radius:4px;background:#fffdf6;color:var(--ink);}
+  .field textarea{min-height:54px;resize:vertical;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(122,92,46,.12);}
+  .full{grid-column:1/-1;}
+  .form-actions{display:flex;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+  .form-actions .btn{flex:1;}
+  .no-sel{padding:40px 20px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9;}
+
+  /* 底部与提示 */
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px;letter-spacing:1px;line-height:1.8;}
+  .toast{position:fixed;right:22px;bottom:22px;background:#4a3618;color:#fff;padding:10px 18px;border-radius:5px;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:99;}
+  .toast.show{opacity:1;transform:none;}
+
+  /* 世代分组标题内的添加按钮 */
+  .group-add{margin-left:auto;background:rgba(255,253,246,.85);border:1px solid var(--line2);color:var(--accent);font-family:inherit;font-size:11px;padding:1px 9px;border-radius:3px;cursor:pointer;letter-spacing:0;transition:.15s;}
+  .group-add:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  /* 登录/注册弹窗 */
+  .mask{position:fixed;inset:0;background:rgba(20,14,5,.62);display:none;align-items:center;justify-content:center;z-index:120;padding:18px;}
+  .mask.show{display:flex;}
+  .auth{width:min(400px,94vw);background:var(--paper);border:1px solid var(--accent);border-radius:8px;box-shadow:0 18px 50px rgba(0,0,0,.45);padding:22px 24px 24px;}
+  .auth h3{margin:0 0 4px;font-size:19px;color:#4a3618;letter-spacing:2px;}
+  .auth .desc{font-size:12px;color:var(--muted);margin:0 0 16px;}
+  .auth .tabs{display:flex;gap:8px;margin-bottom:14px;}
+  .auth .tabs button{flex:1;font-family:inherit;font-size:13px;padding:7px;border:1px solid var(--line2);background:#fffdf6;color:var(--ink2);border-radius:4px;cursor:pointer;}
+  .auth .tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .auth .field label{color:var(--accent);}
+  .auth .err{font-size:12px;color:var(--seal);min-height:17px;margin:2px 0 8px;}
+  .auth .tip{font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:14px;line-height:1.7;}
+  .auth .btn{width:100%;margin-top:4px;}
+  .userbar{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);}
+  .userbar .uname{color:#4a3618;font-weight:700;}
+  .role{font-size:10px;padding:1px 6px;border-radius:3px;background:#5c7a52;color:#fff;}
+  .role.super{background:linear-gradient(135deg,#a67c25,#7a5c2e);color:#fff5d8;border:1px solid #d4af37;}
+  .role.admin{background:#4a6d8c;}
+  .role.visitor{background:#8a7e6b;}
+  .denied{background:#fbeee8;border:1px solid #d9a99f;color:#8a3b2e;padding:9px 13px;border-radius:6px;font-size:13px;margin-top:12px;}
+
+  /* 按世代添加成员 */
+  .addgen{display:inline-flex;align-items:center;gap:6px;}
+  .addgen select{font-family:inherit;font-size:13px;padding:6px 9px;border:1px solid var(--line2);border-radius:4px;background:#fffdf6;color:var(--ink);max-width:130px;}
+
+  /* 成员授权面板 */
+  .mgr{width:min(520px,94vw);max-height:86vh;overflow:auto;}
+  .mgr-list{margin-top:6px;border-top:1px solid var(--line);}
+  .mgr-row{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px dashed var(--line);}
+  .mgr-row .who{flex:1;min-width:0;}
+  .mgr-row .who b{font-size:14px;color:#3a2d1a;}
+  .mgr-row .who .sub{display:block;font-size:11px;color:var(--muted);}
+  .mgr-row select{font-family:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line2);border-radius:4px;background:#fffdf6;color:var(--ink);}
+  .mgr-row select:disabled{background:#f1ead9;color:#8a7e6b;}
+  .mgr-empty{padding:18px;text-align:center;color:var(--muted);font-size:13px;}
+  .mgr-row .rmv{font-size:11px;padding:3px 8px;border:1px solid #c9a9a0;background:#fff6f2;color:#9a4030;border-radius:4px;cursor:pointer;font-family:inherit;}
+  .mgr-add{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+  .mgr-add h4{margin:0 0 10px;font-size:13px;color:#5c4520;letter-spacing:.5px;}
+  .mgr-add .field{margin-bottom:9px;}
+  .mgr-add .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;}
+  .mgr-add .field input{width:100%;box-sizing:border-box;font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line2);border-radius:4px;background:#fffdf6;color:var(--ink);}
+  .mgr-add .btn{width:100%;margin-top:3px;}
+  body.readonly .form input,body.readonly .form select,body.readonly .form textarea{background:#f4eee0;color:#7a705f;cursor:not-allowed;}
+  body.readonly .form-actions,body.readonly #btnDel,body.readonly .group-add{display:none!important;}
+
+  @media print{
+    body{background:#fff;}
+    .app{padding:0;max-width:100%;}
+    .topbar,.stats,.form-actions,.pane-head input,.pane-head select,.pane-head .addgen,.editor,.chain-card .hint,.toast,.no-print,.group-add,.denied,.mask{display:none!important;}
+    .main{display:block;margin-top:0;}
+    .pane{border:none;border-radius:0;}
+    .pane-head{background:none;border:none;padding:0 0 8px;}
+    .pane-head h2{font-size:16px;}
+    .list{max-height:none;overflow:visible;padding:0;}
+    .group-h{position:static;background:#fff;border-top:1px solid #999;border-bottom:1px solid #ddd;}
+    .mem{page-break-inside:avoid;border-bottom:1px solid #ddd;padding:6px 0;}
+    .mem.active{background:none;box-shadow:none;}
+    .mem .sub{color:#444;font-size:11px;}
+    .tag{background:#eee!important;color:#333!important;border:1px solid #ccc;}
+    .chain-card{page-break-inside:avoid;border:1px solid #999;background:#fff;}
+    .node{border:1px solid #999;background:#fff;}
+    .foot{page-break-before:always;}
+    @page{size:A4;margin:14mm;}
+  }
+</style>
+</head>
+<body>
+<!-- 黑金兽纹主题背景层 -->
+<div class="bg">
+  <div class="bg-base"></div>
+  <div class="bg-rays"></div>
+  <div class="bg-beast" id="bgBeast"></div>
+  <canvas id="bgStars"></canvas>
+</div>
+<div id="cursorGlow"></div>
+<div class="app">
+
+  <div class="topbar no-print">
+    <div class="brand"><b>成氏族谱</b><span>广东省英德市东华镇东水村 · 详细填写版</span></div>
+    <button class="btn primary" id="btnAdd">+ 新增成员</button>
+    <button class="btn" id="btnSave">保存</button>
+    <button class="btn" id="btnExport">导出备份</button>
+    <button class="btn" id="btnImport">导入备份</button>
+    <button class="btn" id="btnPrint">打印族谱</button>
+    <button class="btn danger" id="btnReset">恢复初始</button>
+    <span class="status" id="status">自动保存</span>
+    <span class="sync" id="syncBadge" title="云端同步状态">☁ 连接中…</span>
+    <span class="userbar" id="userbar" style="display:none;">
+      欢迎，<span class="uname" id="uname"></span><span class="role" id="urole"></span>
+      <button class="btn" id="btnMgr" style="padding:4px 9px;font-size:12px;display:none;">成员授权</button>
+      <button class="btn" id="btnLogout" style="padding:4px 9px;font-size:12px;">退出</button>
+    </span>
+    <button class="btn primary" id="btnLogin">登录 / 注册</button>
+    <input type="file" id="fileInput" accept="application/json" hidden>
+  </div>
+
+  <div class="denied" id="deniedTip" style="display:none;">当前为<b>访客浏览模式</b>，仅管理员可修改族谱。如需编辑请登录管理员账号。</div>
+
+  <div class="stats no-print">
+    <div class="stat">在册成员<b id="stTotal">0</b></div>
+    <div class="stat">直系成员<b id="stDirect">0</b></div>
+    <div class="stat">涵盖世代<b id="stGen">0</b></div>
+    <div class="stat">最近保存<b id="stTime">—</b></div>
+  </div>
+
+  <div class="chain-card">
+    <h2 id="chainTitle">成艺新的直系四代</h2>
+    <div class="hint no-print" id="chainHint">按当前登录人姓名自动追溯：祖父 → 父亲 → 本人 → 子女；点击任一格可编辑。</div>
+    <div class="chain" id="chain"></div>
+  </div>
+
+  <div class="main">
+    <section class="pane">
+      <div class="pane-head no-print">
+        <h2>族谱名录</h2>
+        <input type="text" id="search" placeholder="搜索名讳 / 配偶 / 备注">
+        <select id="genFilter"><option value="">全部世代</option></select>
+        <select id="branchFilter">
+          <option value="">全部支系</option>
+          <option value="直系">仅直系</option>
+          <option value="旁系">仅旁系</option>
+        </select>
+        <span class="addgen no-print">
+          <select id="addGenSel" title="选择要添加成员的世代"><option value="">选择世代</option></select>
+          <button class="btn primary" id="btnAddGen" title="在所选世代添加成员">+ 该世添加</button>
+        </span>
+      </div>
+      <div class="list" id="list"></div>
+    </section>
+
+    <aside class="pane editor no-print" id="editor">
+      <div class="pane-head"><h2 id="editorTitle">成员信息</h2></div>
+      <div class="no-sel" id="noSel">请从左侧名录中选择一位成员<br>或点击「新增成员」录入</div>
+      <form class="form" id="form" style="display:none;" autocomplete="off">
+        <div class="grid2">
+          <div class="field">
+            <label>世代</label>
+            <input list="genList" id="f_gen" placeholder="如：十八世">
+            <datalist id="genList">
+              <option value="始祖"></option><option value="高祖"></option><option value="曾祖"></option>
+              <option value="三代"></option><option value="先祖"></option>
+              <option value="一世"></option><option value="二世"></option><option value="三世"></option>
+              <option value="四世"></option><option value="五世"></option><option value="六世"></option>
+              <option value="七世"></option><option value="八世"></option><option value="九世"></option>
+              <option value="十世"></option><option value="十一世"></option><option value="十二世"></option>
+              <option value="十三世"></option><option value="十四世"></option><option value="十五世"></option>
+              <option value="十六世"></option><option value="十七世"></option><option value="十八世"></option>
+              <option value="十九世"></option><option value="二十世"></option><option value="二十一世"></option>
+              <option value="二十二世"></option>
+            </datalist>
+          </div>
+          <div class="field">
+            <label>名讳</label>
+            <input id="f_name" placeholder="如：成艺新">
+          </div>
+          <div class="field">
+            <label>字 / 号</label>
+            <input id="f_courtesy" placeholder="如：沐孔">
+          </div>
+          <div class="field">
+            <label>辈分字（可选可填）</label>
+            <input list="genCharList" id="f_genChar" placeholder="如：文 / 新，或直接输入">
+            <datalist id="genCharList">
+              <option value="文"></option><option value="立"></option><option value="奇"></option>
+              <option value="上"></option><option value="悦"></option><option value="振"></option>
+              <option value="金"></option><option value="先"></option><option value="新"></option>
+            </datalist>
+          </div>
+          <div class="field">
+            <label>辈分（排行 / 称谓）</label>
+            <input id="f_benfen" placeholder="如：长子、次女、排行第三">
+          </div>
+          <div class="field">
+            <label>性别</label>
+            <select id="f_gender"><option>男</option><option>女</option></select>
+          </div>
+          <div class="field">
+            <label>支系</label>
+            <select id="f_branch"><option>旁系</option><option>直系</option><option>待考</option></select>
+          </div>
+          <div class="field">
+            <label>父亲（名讳，用于追溯直系）</label>
+            <input id="f_father" placeholder="如：成应先">
+          </div>
+          <div class="field">
+            <label>母亲（名讳）</label>
+            <input id="f_mother" placeholder="如：谢氏">
+          </div>
+          <div class="field full">
+            <label>配偶（多位用顿号「、」分隔，可注明情况）</label>
+            <input id="f_spouse" placeholder="如：谢氏、刘氏（已离异）">
+          </div>
+          <div class="field full">
+            <label>子女（用顿号「、」分隔）</label>
+            <input id="f_children" placeholder="如：成昊轩">
+          </div>
+          <div class="field">
+            <label>出生（年份 / 农历）</label>
+            <input id="f_birth" placeholder="如：1980年">
+          </div>
+          <div class="field">
+            <label>卒年</label>
+            <input id="f_death" placeholder="如：2010年">
+          </div>
+          <div class="field full">
+            <label>籍贯 / 居住地</label>
+            <input id="f_addr" placeholder="如：英德市东华镇东水村">
+          </div>
+          <div class="field">
+            <label>资料来源</label>
+            <select id="f_source"><option>手稿</option><option>口述</option><option>查证</option></select>
+          </div>
+          <div class="field">
+            <label>可信度</label>
+            <select id="f_cred"><option>★★★★★</option><option>★★★★</option><option>★★★</option><option>★★</option><option>★</option></select>
+          </div>
+          <div class="field full">
+            <label>备注</label>
+            <textarea id="f_note" placeholder="如：郎名；从清新县鱼坝镇迁来；总管理员"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn primary" id="btnApply">保存此成员</button>
+          <button type="button" class="btn danger" id="btnDel">删除</button>
+        </div>
+      </form>
+    </aside>
+  </div>
+
+  <div class="foot">
+    成氏族谱 · 广东省英德市东华镇东水村 · 详细填写版<br>
+    数据保存在本机浏览器中；更换设备请先「导出备份」，再到新设备「导入备份」。打印时按钮栏会自动隐藏。
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- 登录 / 注册弹窗 -->
+<div class="mask" id="authMask">
+  <div class="auth">
+    <h3 id="authTitle">账号登录</h3>
+    <p class="desc">成氏族谱 · 仅管理员可修改族谱内容</p>
+    <div class="tabs">
+      <button type="button" class="on" id="tabLogin">登录</button>
+      <button type="button" id="tabReg">注册</button>
+    </div>
+    <form id="authForm" autocomplete="off">
+      <div class="field"><label>全名（真实姓名）</label><input id="auUser" placeholder="请用族谱中的全名，如：成艺新"></div>
+      <div class="field"><label>密码</label><input type="password" id="auPass" placeholder="请输入密码"></div>
+      <div class="field" id="pass2Field" style="display:none;"><label>确认密码</label><input type="password" id="auPass2" placeholder="再次输入密码"></div>
+      <div class="err" id="auErr"></div>
+      <button type="submit" class="btn primary" id="auSubmit">登录</button>
+    </form>
+    <div class="tip">注册须使用<b>本人全名</b>（2–4 个汉字，如「成艺新」），须与族谱名讳一致，昵称、英文名、单字无法注册。<br>本谱 <b>成艺新</b> 为固定总管理员；其余账号注册后为访客，由总管理员授权。账号数据保存在本机浏览器。</div>
+    <button type="button" class="btn" id="authClose" style="margin-top:10px;">关闭</button>
+  </div>
+</div>
+
+<!-- 成员授权弹窗（仅总管理员） -->
+<div class="mask" id="mgrMask">
+  <div class="auth mgr">
+    <h3>成员权限管理</h3>
+    <p class="desc">仅总管理员可操作。下方列出已注册成员，可直接改其角色；若成员尚未注册，请用下方表单为其直接开通账号。</p>
+    <div class="mgr-list" id="mgrList"></div>
+    <div class="mgr-add">
+      <h4>＋ 直接新增普通管理员（无需对方先注册）</h4>
+      <div class="field"><label>本人全名（2–4 个汉字，须与族谱名讳一致）</label><input id="maName" placeholder="如：成明彬"></div>
+      <div class="field"><label>初始密码（至少 4 位，可告知本人登录后自行修改）</label><input type="password" id="maPass" placeholder="设置初始密码"></div>
+      <div class="err" id="maErr"></div>
+      <button type="button" class="btn primary" id="btnMgrAdd">添加为普通管理员</button>
+    </div>
+    <button type="button" class="btn" id="mgrClose" style="margin-top:14px;">关闭</button>
+  </div>
+</div>
+
+<!-- 云端 SDK（全族共享数据，修改后自动同步） -->
+<script src="wbcloud.js"></script>
+<script>
+(function(){
+  "use strict";
+  // 线上访问：把 sharecode 透传给站内所有 .html 链接
+  (function(){
+    var m = location.search.match(/[?&]sharecode=([^&]+)/);
+    if(!m) return;
+    var sc = 'sharecode=' + encodeURIComponent(m[1]);
+    Array.prototype.forEach.call(document.querySelectorAll('a[href$=".html"]'), function(a){
+      var href = a.getAttribute('href');
+      if(href.indexOf('?') < 0) a.setAttribute('href', href + '?' + sc);
+    });
+  })();
+
+  /* ===== 黑金兽纹主题背景渲染 ===== */
+  (function(){
+    // 螭虎兽纹水印
+    var beast = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="-120 -80 260 160">'
+      +'<g fill="none" stroke="%23d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+      +'<path d="M-46,6 C-40,-10 -24,-14 -14,-6 C-8,-1 -10,8 -2,10 C8,13 14,2 24,0 C34,-2 42,6 48,2"/>'
+      +'<path d="M-14,-6 C-20,-20 -4,-26 2,-16 C6,-10 0,-4 -5,-8"/>'
+      +'<path d="M-30,10 C-26,18 -16,18 -14,10 M-8,14 C-4,22 6,22 10,14 M14,10 C18,18 28,16 28,8"/>'
+      +'<path d="M48,2 C56,-2 64,2 65,10 C66,18 60,22 54,20 C51,27 43,25 42,17"/>'
+      +'<path d="M52,-3 C52,-14 62,-18 70,-14 C64,-11 62,-4 64,2"/>'
+      +'<circle cx="58" cy="9" r="2"/>'
+      +'<path d="M-46,6 C-58,4 -62,-8 -54,-14 C-48,-18 -42,-12 -45,-6 C-47,-2 -52,-3 -52,-7"/>'
+      +'<path d="M-26,12 C-28,22 -34,26 -40,24 M-40,24 L-45,29 M-40,24 L-38,30"/>'
+      +'<path d="M18,6 C20,16 26,20 32,18 M32,18 L37,23 M32,18 L30,24"/>'
+      +'</g></svg>';
+    var bb = document.getElementById('bgBeast');
+    if(bb) bb.style.backgroundImage = 'url("data:image/svg+xml;utf8,' + beast + '")';
+    // 星空粒子
+    var c = document.getElementById('bgStars');
+    if(c && c.getContext){
+      var ctx=c.getContext('2d'),W=0,H=0,ps=[],dpr=Math.min(window.devicePixelRatio||1,2);
+      function init(){ ps=[]; var n=Math.min(110,Math.max(45,Math.floor(W/13)));
+        for(var i=0;i<n;i++) ps.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,vy:-(Math.random()*.16+.03),a:Math.random()*.5+.1,ph:Math.random()*6.28}); }
+      function resize(){ W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);init(); }
+      function draw(t){ ctx.clearRect(0,0,W,H);
+        for(var i=0;i<ps.length;i++){ var p=ps[i];p.y+=p.vy;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}
+          var al=p.a*(.5+.5*Math.sin(t*.001+p.ph));ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
+          ctx.fillStyle='rgba(247,230,168,'+al.toFixed(3)+')';ctx.shadowBlur=6;ctx.shadowColor='rgba(212,175,55,.8)';ctx.fill(); }
+        ctx.shadowBlur=0;requestAnimationFrame(draw); }
+      addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+    }
+    // 鼠标光晕
+    var g = document.getElementById('cursorGlow');
+    if(g) addEventListener('mousemove',function(e){ g.style.left=e.clientX+'px'; g.style.top=e.clientY+'px'; });
+  })();
+
+  var KEY = "chengGenealogy_detail_v1";
+  // 云端配置（来自 publicConfig，可安全置于前端）
+  var CLOUD_ENDPOINT = "https://wbapp-qdsbusxfn2ny8kfj41bgyq.app.workbuddy.host";
+  var CLOUD_PK = "wbpk_QDSbuSXfn2ny8KfJ41bgYQ_QRQOG53DlCqrtGgTIcUUttxc9JBcKRI7";
+  var cloud = null, cloudReady = false, booting = true, syncTimer = null;
+
+  function uid(){ return "m" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function M(gen, name, spouse, opt){
+    var o = opt || {};
+    return {
+      id: uid(), gen: gen, name: name, courtesy: o.courtesy || "",
+      genChar: o.genChar || "", benfen: o.benfen || "", gender: o.gender || "男",
+      branch: o.branch || "旁系", spouse: spouse || "", children: o.children || "",
+      father: o.father || "", mother: o.mother || "",
+      birth: "", death: "", addr: "", source: o.source || "手稿",
+      cred: o.cred || "★★★", note: o.note || ""
+    };
+  }
+
+  // 初始数据：据家族手写谱稿整理，直系四代据本人所述
+  function seedData(){
+    var a = [
+      M("始祖","成第一郎","夏氏",{branch:"直系",note:"郎名；手稿称始祖"}),
+      M("高祖","成安萬一郎","黄氏",{branch:"直系",note:"郎名"}),
+      M("曾祖","成膺一郎","黄氏、曾氏",{branch:"直系",note:"郎名"}),
+      M("三代","成念三郎","吕氏",{note:"郎名"}),
+      M("先祖","成念四郎","何氏",{note:"郎名"}),
+      M("四世","成泰三郎","罗氏",{branch:"直系",note:"郎名"}),
+      M("五世","","",{branch:"直系",note:"手稿未见，待补"}),
+      M("六世","成等","凌氏、林氏",{branch:"直系"}),
+
+      M("七世","成文科","汪氏"), M("七世","成文魁","李氏"), M("七世","成文亮","邱氏"),
+
+      M("八世","成钦","张氏"), M("八世","成淳","谢氏"), M("八世","成监","源氏"),
+      M("八世","成锦","傅氏"), M("八世","成书","黄氏"), M("八世","成念",""),
+
+      M("九世","成立德","曾氏"), M("九世","成立仁","黎氏"), M("九世","成立记","谢氏"),
+      M("九世","成立维","孙氏、林氏"), M("九世","成立初","林氏"), M("九世","成立龙","林氏"),
+      M("九世","成立伦","孙氏、杨氏"), M("九世","成立先","刘氏、黄氏"),
+
+      M("十世","成翼","邓氏、张氏、徐氏"), M("十世","成清","陈氏"), M("十世","成弘翼","杨氏"),
+      M("十世","成安","彭氏"), M("十世","成文","刘氏"), M("十世","成丰","何氏"),
+      M("十世","成明","彭氏、曾氏"), M("十世","成恩","万氏"),
+
+      M("十一世","成奇志",""), M("十一世","成奇昌","邱氏"), M("十一世","成奇位","谢氏、朱氏、温氏"),
+      M("十一世","成奇全","陈氏"), M("十一世","成奇仁","林氏"), M("十一世","成奇忠","张氏、缪氏"),
+
+      M("十二世","成招□","赖氏"), M("十二世","成能文","钟氏"), M("十二世","成文義",""),
+      M("十二世","成全",""), M("十二世","成全伯",""),
+
+      M("十三世","成犀","杨氏、曾氏"), M("十三世","成序","吕氏"), M("十三世","成华","林氏、郭氏"),
+      M("十三世","成上贞","何氏"), M("十三世","成上德","谢氏"), M("十三世","成上宁","彭氏"),
+      M("十三世","成上容","张氏"), M("十三世","成上贤","林氏"), M("十三世","成上郁",""),
+      M("十三世","成上威",""), M("十三世","成上仁","邓氏、谢氏"), M("十三世","成上义","谢氏"),
+      M("十三世","成上礼","黄氏"), M("十三世","成上志",""), M("十三世","成上达","谢氏"),
+      M("十三世","成上美","欧氏"), M("十三世","成上奇","张氏"), M("十三世","成上儒","张氏"),
+
+      M("十四世","成名世","吕氏"), M("十四世","成悦周","林氏"), M("十四世","成悦腾","林氏"),
+      M("十四世","成悦文","徐氏、廖氏"),
+
+      M("十五世","成纬琦","官氏、郭氏",{note:"原稿有涂改"}), M("十五世","成腾","何氏"),
+      M("十五世","成乙","张氏"), M("十五世","成绵","张氏、曾氏"), M("十五世","成动","郑氏"),
+      M("十五世","成满","凌氏"), M("十五世","成贵","邹氏"), M("十五世","成华","曾氏、赖氏"),
+
+      M("十六世","成上珩","罗氏"), M("十六世","成观球","张氏"), M("十六世","成梅","郭氏"),
+      M("十六世","成上朝","林氏"), M("十六世","成雲","曾氏"), M("十六世","成上禄","缪氏"),
+      M("十六世","成上智","黎氏"), M("十六世","成悦志","陈氏"), M("十六世","成有宗","林氏"),
+      M("十六世","成孝宗","谢氏"), M("十六世","成月龢","张氏"), M("十六世","成乾振","缪氏"),
+      M("十六世","成寿表",""), M("十六世","成乾昌",""), M("十六世","成乾德",""),
+      M("十六世","成永明",""), M("十六世","成永表",""), M("十六世","成永福",""),
+
+      M("十七世","成振旅","曾氏"), M("十七世","成振龙","赵氏"),
+      M("十七世","成振球","邹氏",{courtesy:"名軒"}), M("十七世","成德兴","官氏、郭氏"),
+      M("十七世","成德召","朱氏"), M("十七世","成德耀","杨氏、林氏、范氏、陈氏"),
+      M("十七世","成德文","邓氏"), M("十七世","德华","黄氏、陈氏"), M("十七世","德发","缪氏、范氏"),
+      M("十七世","德龙","吕氏"), M("十七世","德太","许氏"), M("十七世","德全","陈氏"),
+      M("十七世","成德元","林氏、杨氏、黎氏"), M("十七世","成振平",""),
+      M("十七世","成连瑞",""), M("十七世","成连福",""), M("十七世","成平安",""),
+      M("十七世","成金全",""), M("十七世","成宗全",""),
+
+      M("十八世","成金茂","罗氏、曾氏"), M("十八世","成金首","谢氏"),
+      M("十八世","成金富","杨氏",{branch:"直系",cred:"★★★★★",note:"成艺新之祖父"}),
+
+      M("十九世","成品先","杨氏"), M("十九世","成永先","王氏"), M("十九世","成仲先","杨氏"),
+      M("十九世","成玉先","朱氏"),
+      M("十九世","成应先","谢氏",{branch:"直系",cred:"★★★★",note:"成艺新之父",father:"成金富"}),
+
+      M("二十世","成福新","张氏"), M("二十世","成禄新","杨氏"), M("二十世","成寿新","吴氏"),
+      M("二十世","成金新","缪氏"), M("二十世","成增新","余氏"), M("二十世","成之新","方氏"),
+      M("二十世","成建新","余氏"), M("二十世","成财新","胡氏"), M("二十世","成平新","林氏"),
+      M("二十世","成红新",""), M("二十世","成卫新","张氏"),
+      M("二十世","成艺新","刘氏（已离异）",{branch:"直系",cred:"★★★★★",note:"总管理员",father:"成应先"}),
+
+      M("二十一世","成云飞",""), M("二十一世","成保为",""), M("二十一世","成荣",""),
+      M("二十一世","成利达",""), M("二十一世","成权飞","",{courtesy:"文杰"}),
+      M("二十一世","成超",""), M("二十一世","成聪",""), M("二十一世","成明彬",""),
+      M("二十一世","成昊轩","",{branch:"直系",cred:"★★★★",note:"成艺新之子",source:"口述",father:"成艺新"}),
+
+      M("二十二世","","",{note:"手稿仅存世代字样，人名未录，待补"})
+    ];
+    // 依名讳推断辈分字
+    var chars = ["文","立","奇","上","悦","振","金","先","新"];
+    a.forEach(function(m){
+      if(!m.genChar && m.name){
+        var s = m.name.replace(/^成/, "");
+        for(var i=0;i<chars.length;i++){ if(s.indexOf(chars[i]) >= 0){ m.genChar = chars[i]; break; } }
+      }
+    });
+    return a;
+  }
+
+  var state = { members: [], users: [], selected: null };
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ===== 云端同步（全族共享一份） ===== */
+  function setSync(cls, txt){ var el=$("syncBadge"); el.className="sync"+cls; el.textContent=txt; }
+  function initCloud(){
+    try{
+      if(typeof WorkBuddyCloud === "undefined" || !WorkBuddyCloud.createWorkBuddyCloud) return false;
+      cloud = WorkBuddyCloud.createWorkBuddyCloud({
+        endpoint: CLOUD_ENDPOINT,
+        publishableKey: CLOUD_PK
+      });
+      cloudReady = !!cloud && !!cloud.database;
+      return cloudReady;
+    }catch(e){ return false; }
+  }
+  // 从云端拉取整份数据（成员+账号）
+  function cloudPull(cb){
+    if(!cloudReady){ cb && cb(false); return; }
+    setSync(" syncing","☁ 同步中…");
+    cloud.database.from("clan_data").select("members,users").eq("doc_key","main").maybeSingle().then(function(res){
+      if(res && res.error){ setSync(" err","☁ 离线"); cb && cb(false); return; }
+      var row = res && res.data;
+      var cloudHasData = row && Array.isArray(row.members) && row.members.length > 0;
+      if(cloudHasData){
+        // 云端有数据：以云端为准
+        state.members = row.members;
+        if(Array.isArray(row.users) && row.users.length) state.users = row.users;
+        migrateRelations();
+        localStorage.setItem(KEY, JSON.stringify({members:state.members, users:state.users}));
+        renderAll(); applyAuthUI();
+        setSync(" ok","☁ 已同步");
+      }else{
+        // 云端为空：用本地数据播种
+        cloudPush(true);
+        setSync(" ok","☁ 已上传");
+      }
+      cb && cb(true);
+    }).catch(function(){ setSync(" err","☁ 离线"); cb && cb(false); });
+  }
+  // 推送整份数据到云端
+  function doPush(){
+    if(!cloudReady) return;
+    cloud.database.from("clan_data").upsert({
+      doc_key:"main", members:state.members, users:state.users, updated_at:new Date().toISOString()
+    }).then(function(res){
+      if(res && res.error){ setSync(" err","☁ 同步失败"); }
+      else{ setSync(" ok","☁ 已同步"); }
+    }).catch(function(){ setSync(" err","☁ 同步失败"); });
+  }
+  function cloudPush(silent){
+    if(!cloudReady || booting){ return; }
+    if(!silent) setSync(" syncing","☁ 上传中…");
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(doPush, 500);
+  }
+
+  /* ===== 账号与权限（数据存云端 + 本地会话） ===== */
+  var SK = "chengSession_v1";
+  function getUsers(){
+    var a = state.users;
+    if(!Array.isArray(a)) { a = []; state.users = a; }
+    var changed = false;
+    a.forEach(function(u){
+      // 成艺新固定为总管理员
+      if(u.name === "成艺新" && u.role !== "super"){ u.role = "super"; changed = true; }
+    });
+    if(changed && !booting) saveUsers(a);
+    return a;
+  }
+  function saveUsers(u){ state.users = u; persist(); }
+  function hashPwd(s){
+    var h = 5381, str = "cheng@" + s + "#clan";
+    for(var i=0;i<str.length;i++){ h = ((h<<5) + h) ^ str.charCodeAt(i); }
+    return (h>>>0).toString(36);
+  }
+  function session(){ return localStorage.getItem(SK) || ""; }
+  function currentUser(){
+    var u = session(); if(!u) return null;
+    var list = getUsers();
+    for(var i=0;i<list.length;i++) if(list[i].name === u) return list[i];
+    return null;
+  }
+  var SUPER_NAME = "成艺新"; // 固定总管理员
+  function isSuper(){ var u = currentUser(); return !!(u && u.role === "super"); }
+  function isAdmin(){ var u = currentUser(); return !!(u && (u.role === "admin" || u.role === "super")); }
+  function roleText(r){ return r === "super" ? "总管理员" : (r === "admin" ? "普通管理员" : "访客"); }
+  function applyAuthUI(){
+    var u = currentUser();
+    document.body.classList.toggle("readonly", !isAdmin());
+    $("userbar").style.display = u ? "inline-flex" : "none";
+    $("deniedTip").style.display = (!u) ? "block" : "none";
+    $("btnLogin").style.display = u ? "none" : "inline-block";
+    $("btnMgr").style.display = isSuper() ? "inline-block" : "none";
+    if(u){
+      $("uname").textContent = u.name;
+      $("urole").textContent = roleText(u.role);
+      $("urole").className = "role" + (u.role === "super" ? " super" : (u.role === "admin" ? " admin" : " visitor"));
+    }
+    // 无编辑权限时禁用所有输入控件
+    var dis = !isAdmin();
+    var ctrls = $("form").querySelectorAll("input,select,textarea");
+    for(var i=0;i<ctrls.length;i++) ctrls[i].disabled = dis;
+    // 按登录人刷新直系四代
+    renderChain();
+    if(isSuper()) renderMgrList();
+  }
+  function requireAdmin(){
+    if(isAdmin()) return true;
+    toast("仅管理员可修改族谱，请先登录管理员账号");
+    openAuth("login");
+    return false;
+  }
+  var authMode = "login";
+  function openAuth(mode){
+    authMode = mode || "login";
+    $("authMask").classList.add("show");
+    $("auErr").textContent = "";
+    $("auUser").value = ""; $("auPass").value = ""; $("auPass2").value = "";
+    $("tabLogin").className = authMode === "login" ? "on" : "";
+    $("tabReg").className = authMode === "reg" ? "on" : "";
+    $("pass2Field").style.display = authMode === "reg" ? "block" : "none";
+    $("authTitle").textContent = authMode === "reg" ? "注册账号" : "账号登录";
+    $("auSubmit").textContent = authMode === "reg" ? "注册" : "登录";
+    setTimeout(function(){ $("auUser").focus(); }, 60);
+  }
+  function closeAuth(){ $("authMask").classList.remove("show"); }
+  function isFullName(s){ return /^[\u4e00-\u9fa5]{2,4}$/.test(s); }
+  function submitAuth(){
+    var name = $("auUser").value.trim(), pass = $("auPass").value;
+    if(!name || !pass){ $("auErr").textContent = "请填写全名和密码。"; return; }
+    var users = getUsers();
+    if(authMode === "reg"){
+      if(!isFullName(name)){ $("auErr").textContent = "请用本人全名注册（2–4 个汉字，如「成艺新」），不可使用昵称、英文名或单字。"; return; }
+      if(pass !== $("auPass2").value){ $("auErr").textContent = "两次输入的密码不一致。"; return; }
+      if(pass.length < 4){ $("auErr").textContent = "密码至少 4 位。"; return; }
+      for(var i=0;i<users.length;i++) if(users[i].name === name){ $("auErr").textContent = "该姓名已注册，请直接登录。"; return; }
+      // 成艺新固定为总管理员；若总管理员账号尚不存在（首次），此全名注册即成为总管理员
+      var hasSuper = false;
+      for(var k=0;k<users.length;k++) if(users[k].role === "super"){ hasSuper = true; break; }
+      var role = (name === SUPER_NAME && !hasSuper) ? "super" : "visitor";
+      users.push({name:name, pwd:hashPwd(pass), role:role});
+      saveUsers(users); localStorage.setItem(SK, name);
+      closeAuth(); applyAuthUI();
+      toast(role === "super" ? "注册成功，你是本谱总管理员" : "注册成功，当前为访客（仅可浏览，待总管理员授权）");
+    }else{
+      var found = null;
+      for(var j=0;j<users.length;j++) if(users[j].name === name && users[j].pwd === hashPwd(pass)){ found = users[j]; break; }
+      if(!found){ $("auErr").textContent = "姓名或密码错误，或尚未注册。"; return; }
+      localStorage.setItem(SK, name);
+      closeAuth(); applyAuthUI();
+      toast("已登录：" + name + "（" + roleText(found.role) + "）");
+    }
+  }
+
+  /* ===== 成员授权（仅总管理员） ===== */
+  function openMgr(){
+    if(!isSuper()){ toast("仅总管理员可管理成员权限"); return; }
+    renderMgrList();
+    $("mgrMask").classList.add("show");
+  }
+  function closeMgr(){ $("mgrMask").classList.remove("show"); }
+  function renderMgrList(){
+    var users = getUsers();
+    if(!users.length){ $("mgrList").innerHTML = '<div class="mgr-empty">暂无注册成员</div>'; return; }
+    users.sort(function(a,b){ return (a.role==="super"?-1:0) - (b.role==="super"?-1:0); });
+    var html = "";
+    users.forEach(function(u){
+      var isFixed = (u.name === SUPER_NAME && u.role === "super");
+      var opts = "";
+      if(isFixed){
+        opts = '<option selected>总管理员（固定）</option>';
+      }else{
+        opts = '<option value="visitor"' + (u.role!=="admin"?' selected':'') + '>访客（只读）</option>' +
+               '<option value="admin"' + (u.role==="admin"?' selected':'') + '>普通管理员（可编辑）</option>';
+      }
+      html += '<div class="mgr-row"><div class="who"><b>' + esc(u.name) + '</b>' +
+              '<span class="sub">' + (isFixed ? '本谱创建者，权限不可更改' : roleText(u.role)) + '</span></div>' +
+              '<select data-mgr="' + esc(u.name) + '"' + (isFixed?' disabled':'') + '>' + opts + '</select>' +
+              (isFixed ? '' : '<button class="rmv" data-rmv="' + esc(u.name) + '">移除</button>') + '</div>';
+    });
+    $("mgrList").innerHTML = html;
+    Array.prototype.forEach.call($("mgrList").querySelectorAll("select[data-mgr]"), function(sel){
+      sel.addEventListener("change", function(){
+        var nm = sel.getAttribute("data-mgr"), val = sel.value;
+        var us = getUsers();
+        for(var i=0;i<us.length;i++) if(us[i].name === nm){ us[i].role = val; break; }
+        saveUsers(us);
+        toast("已将「" + nm + "」设为" + roleText(val));
+        renderMgrList(); applyAuthUI();
+      });
+    });
+    Array.prototype.forEach.call($("mgrList").querySelectorAll("button[data-rmv]"), function(btn){
+      btn.addEventListener("click", function(){
+        var nm = btn.getAttribute("data-rmv");
+        if(!confirm("确定移除成员「" + nm + "」的账号吗？其将失去登录与编辑权限。")) return;
+        var us = getUsers().filter(function(u){ return u.name !== nm; });
+        saveUsers(us);
+        if(session() === nm) localStorage.removeItem(SK);
+        toast("已移除成员「" + nm + "」");
+        renderMgrList(); applyAuthUI();
+      });
+    });
+  }
+  // 总管理员直接新增普通管理员账号（无需对方先注册）
+  function addManager(){
+    if(!isSuper()){ toast("仅总管理员可添加"); return; }
+    var name = ($("maName").value || "").trim(), pass = $("maPass").value;
+    $("maErr").textContent = "";
+    if(!isFullName(name)){ $("maErr").textContent = "请填本人全名（2–4 个汉字），不可昵称/英文名/单字。"; return; }
+    if(pass.length < 4){ $("maErr").textContent = "初始密码至少 4 位。"; return; }
+    var us = getUsers();
+    for(var i=0;i<us.length;i++) if(us[i].name === name){ $("maErr").textContent = "「" + name + "」已存在，请直接在上方列表改其角色。"; return; }
+    if(name === SUPER_NAME){ $("maErr").textContent = "总管理员账号不可重复添加。"; return; }
+    us.push({name:name, pwd:hashPwd(pass), role:"admin"});
+    saveUsers(us);
+    $("maName").value = ""; $("maPass").value = "";
+    toast("已添加「" + name + "」为普通管理员（账号已云端同步）");
+    renderMgrList(); applyAuthUI();
+  }
+
+  // 已知直系父子关系，用于兼容旧数据迁移
+  var KNOWN_FATHER = { "成应先":"成金富", "成艺新":"成应先", "成昊轩":"成艺新" };
+  function migrateRelations(){
+    state.members.forEach(function(m){
+      if(m.name && KNOWN_FATHER[m.name] && !m.father) m.father = KNOWN_FATHER[m.name];
+      if(m.father === undefined) m.father = "";
+      if(m.mother === undefined) m.mother = "";
+    });
+  }
+  // 先读本地缓存（秒开），再由 init 用云端数据覆盖
+  function loadLocal(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(raw){
+        var d = JSON.parse(raw);
+        if(d && Array.isArray(d.members)){
+          state.members = d.members;
+          if(Array.isArray(d.users)) state.users = d.users;
+          migrateRelations(); return;
+        }
+      }
+    }catch(e){}
+    state.members = seedData();
+    migrateRelations();
+  }
+  function persist(){
+    try{
+      localStorage.setItem(KEY, JSON.stringify({members:state.members, users:state.users}));
+      var t = new Date();
+      $("stTime").textContent = String(t.getHours()).padStart(2,"0") + ":" + String(t.getMinutes()).padStart(2,"0");
+      $("status").textContent = "已保存 ✓";
+      setTimeout(function(){ $("status").textContent = "自动保存"; }, 1600);
+    }catch(e){ $("status").textContent = "保存失败"; }
+    cloudPush(); // 每次修改自动同步到云端
+  }
+  function toast(msg){
+    var el = $("toast"); el.textContent = msg; el.classList.add("show");
+    clearTimeout(toast._t); toast._t = setTimeout(function(){ el.classList.remove("show"); }, 1800);
+  }
+
+  function genRank(g){
+    if(!g) return 999;
+    var m = String(g).match(/(\d+)/);
+    if(m) return parseInt(m[1],10);
+    var map = {"始祖":0,"高祖":1,"曾祖":2,"先祖":2,"三代":3};
+    return map[g] != null ? map[g] : 900;
+  }
+  function sorted(){
+    return state.members.slice().sort(function(a,b){
+      var d = genRank(a.gen) - genRank(b.gen);
+      return d !== 0 ? d : state.members.indexOf(a) - state.members.indexOf(b);
+    });
+  }
+  function byId(id){
+    for(var i=0;i<state.members.length;i++) if(state.members[i].id === id) return state.members[i];
+    return null;
+  }
+
+  function renderStats(){
+    var gens = {};
+    state.members.forEach(function(m){ if(m.gen) gens[m.gen] = 1; });
+    $("stTotal").textContent = state.members.length;
+    $("stDirect").textContent = state.members.filter(function(m){ return m.branch === "直系" && m.name; }).length;
+    $("stGen").textContent = Object.keys(gens).length;
+  }
+
+  function findByName(nm){
+    if(!nm) return null;
+    for(var i=0;i<state.members.length;i++) if(state.members[i].name === nm) return state.members[i];
+    return null;
+  }
+  // 依据当前登录人姓名，向上追溯父、祖，向下找子女，组成"祖→父→己→子"四代
+  function buildChainFor(person){
+    var me = findByName(person);
+    if(!me) return { nodes: [], hint: "未在族谱中找到「" + person + "」，可在名录中新增该成员并填写父子关系。" };
+    var father = findByName(me.father);
+    var grand  = father ? findByName(father.father) : null;
+    // 子女：father 字段指向本人，或用 children 字段
+    var kids = state.members.filter(function(m){ return m.father === me.name; });
+    var child = kids.length ? kids[0] : null;
+    if(!child && me.children){
+      var cn = me.children.split(/[、,，]/)[0].trim();
+      child = findByName(cn);
+    }
+    var nodes = [grand, father, me, child];
+    var missingCount = (!grand?1:0) + (!father?1:0) + (!child?1:0);
+    var hint = missingCount ? ("部分世代信息未录入：请在该成员资料中填写「父亲」名讳，系统将自动接续直系四代。") : "";
+    return { nodes: nodes, hint: hint };
+  }
+  function renderChain(){
+    var u = currentUser();
+    // 未登录：不固定显示任何默认人物，改为引导登录
+    if(!u){
+      $("chainTitle").textContent = "直系四代";
+      $("chainHint").textContent = "按当前登录人的全名自动追溯：祖父 → 父亲 → 本人 → 子女；登录后即显示您本人的直系四代，点击任一格可编辑。";
+      $("chainHint").style.display = "block";
+      $("chain").innerHTML = '<div class="empty-tip" style="padding:18px;text-align:center;">登录后，系统将根据您的全名显示本人直系四代</div>';
+      return;
+    }
+    // 登录后：完全按注册用户全名显示
+    var person = u.name;
+    var title = person + "的直系四代";
+    $("chainTitle").textContent = title;
+    var res = buildChainFor(person);
+    var roles = ["祖父","父亲","本人","子女"];
+    var html = "";
+    if(!res.nodes.length || !res.nodes[2]){
+      $("chainHint").textContent = res.hint;
+      $("chainHint").style.display = "block";
+      $("chain").innerHTML = '<div class="empty-tip" style="padding:14px;">暂无可显示的直系信息</div>';
+      return;
+    }
+    if(res.hint){ $("chainHint").textContent = res.hint; $("chainHint").style.display = "block"; }
+    else{ $("chainHint").style.display = "none"; }
+    res.nodes.forEach(function(n, i){
+      if(i) html += '<div class="arw">→</div>';
+      var has = !!(n && n.name);
+      html += '<div class="node' + (has ? '' : ' empty') + '"' + (has && n.id ? ' data-id="'+esc(n.id)+'"' : '') + '>' +
+              '<div class="g">' + roles[i] + (has ? ' · ' + esc(n.gen) : '') + '</div>' +
+              '<div class="n">' + (has ? esc(n.name) : (n && n.gen ? "待补" : "—")) + '</div>' +
+              '<div class="s">' + (has ? esc(n.spouse || n.note || "—") : "待补") + '</div></div>';
+    });
+    $("chain").innerHTML = html;
+    Array.prototype.forEach.call($("chain").querySelectorAll(".node[data-id]"), function(el){
+      el.addEventListener("click", function(){ select(el.getAttribute("data-id")); });
+    });
+  }
+
+  function allGens(){
+    var cn = ["","一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五","十六","十七","十八","十九","二十","二十一","二十二"];
+    var order = ["始祖","高祖","曾祖","三代","先祖"];
+    for(var i=1;i<=22;i++) order.push(cn[i] + "世");
+    return order;
+  }
+  function renderFilter(){
+    var gens = {};
+    sorted().forEach(function(m){ if(m.gen) gens[m.gen] = 1; });
+    var cur = $("genFilter").value;
+    var html = '<option value="">全部世代</option>';
+    allGens().forEach(function(g){ html += '<option value="'+esc(g)+'">'+esc(g)+'</option>'; });
+    $("genFilter").innerHTML = html;
+    $("genFilter").value = cur;
+    // 世代添加下拉
+    var cur2 = $("addGenSel").value;
+    var h2 = '<option value="">选择世代</option>';
+    allGens().forEach(function(g){ h2 += '<option value="'+esc(g)+'">'+esc(g)+'</option>'; });
+    $("addGenSel").innerHTML = h2;
+    $("addGenSel").value = cur2;
+  }
+
+  function renderList(){
+    var q = ($("search").value || "").trim();
+    var gf = $("genFilter").value, bf = $("branchFilter").value;
+    var arr = sorted().filter(function(m){
+      if(gf && m.gen !== gf) return false;
+      if(bf && m.branch !== bf) return false;
+      if(q){
+        var s = [m.gen,m.name,m.courtesy,m.genChar,m.benfen,m.spouse,m.children,m.note,m.addr].join(" ");
+        if(s.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    if(!arr.length){ $("list").innerHTML = '<div class="empty-tip">没有符合条件的成员</div>'; return; }
+
+    var html = "", lastGen = null;
+    arr.forEach(function(m){
+      if(m.gen !== lastGen){
+        html += '<div class="group-h"><span>' + esc(m.gen || "未标世代") + '</span>' +
+                '<button type="button" class="group-add" data-gen="'+esc(m.gen || "")+'" title="在这一世添加成员">+ 添加人员</button></div>';
+        lastGen = m.gen;
+      }
+      var tags = "";
+      if(m.branch === "直系") tags += '<span class="tag direct">直系</span>';
+      if(m.source === "口述") tags += '<span class="tag mouth">口述</span>';
+      if(m.source && m.source !== "口述") tags += '<span class="tag">' + esc(m.source) + '</span>';
+      var sub = [];
+      if(m.genChar) sub.push("辈分字：" + m.genChar);
+      if(m.benfen) sub.push("辈分：" + m.benfen);
+      if(m.spouse) sub.push("配偶：" + m.spouse);
+      if(m.children) sub.push("子女：" + m.children);
+      if(m.courtesy) sub.push("字号：" + m.courtesy);
+      if(m.birth || m.death) sub.push("生卒：" + (m.birth||"?") + "—" + (m.death||"?"));
+      if(m.note) sub.push(m.note);
+      html += '<div class="mem' + (state.selected === m.id ? ' active' : '') + '" data-id="'+esc(m.id)+'">' +
+        '<div class="gcol">' + esc(m.gen) + '</div>' +
+        '<div class="body"><div class="name">' + (m.name ? esc(m.name) : '<span style="color:#9a8f7c;font-weight:400">（名讳待补）</span>') +
+        (m.cred ? ' <span style="font-size:11px;color:#8a7e6b;font-weight:400">'+esc(m.cred)+'</span>' : '') + '</div>' +
+        '<div class="sub">' + esc(sub.join(" ｜ ")) + '</div></div>' +
+        '<div class="tags">' + tags + '</div></div>';
+    });
+    $("list").innerHTML = html;
+    Array.prototype.forEach.call($("list").querySelectorAll(".mem"), function(el){
+      el.addEventListener("click", function(){ select(el.getAttribute("data-id")); });
+    });
+    Array.prototype.forEach.call($("list").querySelectorAll(".group-add"), function(el){
+      el.addEventListener("click", function(e){
+        e.stopPropagation();
+        addMember(el.getAttribute("data-gen"));
+      });
+    });
+  }
+
+  function renderAll(){ renderStats(); renderChain(); renderFilter(); renderList(); }
+
+  var fields = {
+    gen:"f_gen", name:"f_name", courtesy:"f_courtesy", genChar:"f_genChar", benfen:"f_benfen",
+    gender:"f_gender", branch:"f_branch", father:"f_father", mother:"f_mother",
+    spouse:"f_spouse", children:"f_children",
+    birth:"f_birth", death:"f_death", addr:"f_addr", source:"f_source",
+    cred:"f_cred", note:"f_note"
+  };
+
+  function select(id){
+    var m = byId(id);
+    if(!m) return;
+    // 切换前先保存当前编辑
+    if(state.selected && $("form").style.display !== "none") apply(false);
+    state.selected = id;
+    $("noSel").style.display = "none";
+    $("form").style.display = "block";
+    $("editorTitle").textContent = m.name ? m.name + " · " + m.gen : "新成员 · " + m.gen;
+    Object.keys(fields).forEach(function(k){ $(fields[k]).value = m[k] || ""; });
+    renderList(); renderChain();
+    if(window.innerWidth < 1000) $("editor").scrollIntoView({behavior:"smooth"});
+  }
+
+  function apply(showToast){
+    if(!isAdmin()) return;
+    var m = byId(state.selected);
+    if(!m) return;
+    Object.keys(fields).forEach(function(k){ m[k] = $(fields[k]).value; });
+    $("editorTitle").textContent = (m.name ? m.name + " · " + m.gen : "新成员 · " + m.gen);
+    persist(); renderAll();
+    if(showToast !== false) toast("已保存：" + (m.name || "新成员"));
+  }
+
+  function clearEditor(){
+    state.selected = null;
+    $("form").style.display = "none";
+    $("noSel").style.display = "block";
+    $("editorTitle").textContent = "成员信息";
+  }
+
+  function addMember(gen){
+    if(!requireAdmin()) return;
+    var g = gen || "二十一世";
+    var m = M(g,"","",{source:"口述",cred:"★★★",note:""});
+    state.members.push(m);
+    persist(); renderAll(); select(m.id);
+    $("f_name").focus();
+    toast("已在「" + g + "」新增，请填写信息");
+  }
+
+  function delMember(){
+    if(!requireAdmin()) return;
+    var m = byId(state.selected);
+    if(!m) return;
+    if(!confirm("确定删除「" + (m.name || "未命名") + "」吗？此操作不可撤销。")) return;
+    state.members = state.members.filter(function(x){ return x.id !== m.id; });
+    clearEditor(); persist(); renderAll(); toast("已删除");
+  }
+
+  function exportData(){
+    var blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json;charset=utf-8"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = "成氏族谱_广东省英德市东华镇东水村_数据备份.json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    toast("备份已导出");
+  }
+
+  function importData(file){
+    if(!requireAdmin()) return;
+    var r = new FileReader();
+    r.onload = function(){
+      try{
+        var d = JSON.parse(r.result);
+        if(!d || !Array.isArray(d.members)) throw new Error("bad");
+        state = d; state.selected = null;
+        clearEditor(); persist(); renderAll(); toast("导入成功，共 " + state.members.length + " 位成员");
+      }catch(e){ alert("文件格式不正确，请选择本工具导出的 JSON 备份。"); }
+    };
+    r.readAsText(file, "utf-8");
+  }
+
+  // 事件绑定
+  $("btnAdd").addEventListener("click", addMember);
+  $("btnSave").addEventListener("click", function(){ apply(true); });
+  $("btnApply").addEventListener("click", function(){ apply(true); });
+  $("btnDel").addEventListener("click", delMember);
+  $("btnExport").addEventListener("click", exportData);
+  $("btnImport").addEventListener("click", function(){ $("fileInput").click(); });
+  $("fileInput").addEventListener("change", function(e){ if(e.target.files[0]) importData(e.target.files[0]); e.target.value = ""; });
+  $("btnPrint").addEventListener("click", function(){ if(state.selected && $("form").style.display !== "none") apply(false); window.print(); });
+  $("btnReset").addEventListener("click", function(){
+    if(!requireAdmin()) return;
+    if(!confirm("恢复初始数据会清除你已填写的全部内容，确定吗？建议先导出备份。")) return;
+    state.members = seedData(); state.selected = null;
+    clearEditor(); persist(); renderAll(); toast("已恢复初始数据");
+  });
+  $("search").addEventListener("input", renderList);
+  $("genFilter").addEventListener("change", renderList);
+  $("branchFilter").addEventListener("change", renderList);
+
+  // 账号与权限事件
+  $("btnLogin").addEventListener("click", function(){ openAuth("login"); });
+  $("tabLogin").addEventListener("click", function(){ openAuth("login"); });
+  $("tabReg").addEventListener("click", function(){ openAuth("reg"); });
+  $("authClose").addEventListener("click", closeAuth);
+  $("authMask").addEventListener("click", function(e){ if(e.target === $("authMask")) closeAuth(); });
+  $("authForm").addEventListener("submit", function(e){ e.preventDefault(); submitAuth(); });
+  $("btnLogout").addEventListener("click", function(){
+    localStorage.removeItem(SK); applyAuthUI(); clearEditor(); toast("已退出登录");
+  });
+  // 成员授权事件
+  $("btnMgr").addEventListener("click", openMgr);
+  $("mgrClose").addEventListener("click", closeMgr);
+  $("mgrMask").addEventListener("click", function(e){ if(e.target === $("mgrMask")) closeMgr(); });
+  $("btnMgrAdd").addEventListener("click", addManager);
+  // 按世代添加事件
+  $("btnAddGen").addEventListener("click", function(){
+    var g = $("addGenSel").value;
+    if(!g){ toast("请先选择要添加的世代"); $("addGenSel").focus(); return; }
+    addMember(g);
+  });
+
+  // 表单改动自动保存（防抖）
+  var timer = null;
+  $("form").addEventListener("input", function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ apply(false); }, 600);
+  });
+  $("form").addEventListener("change", function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ apply(false); }, 200);
+  });
+
+  loadLocal();
+  renderAll();
+  applyAuthUI();
+  // 初始化云端并拉取共享数据（完成后开启自动同步）
+  var ok = initCloud();
+  cloudPull(function(){
+    booting = false;
+    renderAll();
+    applyAuthUI();
+    if(!ok) setSync(" err","☁ 本地模式");
+  });
+  // 页面关闭前尽快同步一次
+  window.addEventListener("beforeunload", function(){ if(cloudReady) cloudPush(true); });
+})();
+</script>
+</body>
+</html>
