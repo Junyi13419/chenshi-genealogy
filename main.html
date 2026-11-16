@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成氏宗祠 · 上谷世家 · 广东省英德市东华镇东水村</title>
+<meta name="description" content="成氏宗祠广东省英德市东华镇东水村官方网站，成姓源流、世系族谱、祠堂祭祖、敬宗睦族。">
+<style>
+:root{
+  --gold1:#8a6a20; --gold2:#d4af37; --gold3:#f7e6a8; --gold4:#fff6d0;
+  --ink:#0a0805; --ink2:#120d06; --ink3:#1c1408; --line:rgba(212,175,55,.28);
+  --red:#9e2b1e; --red2:#c0392b; --muted:#9c8b62;
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--ink);color:var(--gold3);font-family:var(--serif);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;}
+
+/* ============ 背景层 ============ */
+.bg{position:fixed;inset:0;z-index:-3;pointer-events:none;}
+.bg-base{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,#241a09 0%,#120d06 46%,#070502 100%);}
+.bg-rays{position:absolute;inset:-20%;opacity:.35;background:conic-gradient(from 0deg at 50% 18%,
+  rgba(212,175,55,.06) 0deg,transparent 12deg,rgba(212,175,55,.03) 24deg,transparent 36deg,
+  rgba(212,175,55,.06) 48deg,transparent 60deg,rgba(212,175,55,.03) 72deg,transparent 84deg,
+  rgba(212,175,55,.06) 96deg,transparent 108deg,rgba(212,175,55,.03) 120deg,transparent 132deg,
+  rgba(212,175,55,.06) 144deg,transparent 156deg,rgba(212,175,55,.03) 168deg,transparent 180deg,
+  rgba(212,175,55,.06) 192deg,transparent 204deg,rgba(212,175,55,.03) 216deg,transparent 228deg,
+  rgba(212,175,55,.06) 240deg,transparent 252deg,rgba(212,175,55,.03) 264deg,transparent 276deg,
+  rgba(212,175,55,.06) 288deg,transparent 300deg,rgba(212,175,55,.03) 312deg,transparent 324deg,
+  rgba(212,175,55,.06) 336deg,transparent 348deg,rgba(212,175,55,.03) 360deg);
+  animation:rays 120s linear infinite;}
+@keyframes rays{to{transform:rotate(360deg);}}
+#stars{position:absolute;inset:0;}
+.vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;box-shadow:inset 0 0 200px 60px rgba(0,0,0,.85);}
+
+/* 鼠标特效 */
+#cursorGlow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:-2;
+  background:radial-gradient(circle,rgba(212,175,55,.10),rgba(212,175,55,.03) 38%,transparent 66%);
+  transform:translate(-50%,-50%);transition:opacity .3s;}
+
+/* ============ 通用 ============ */
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;}
+.sec{padding:88px 0;position:relative;}
+.sec-title{text-align:center;margin-bottom:12px;}
+.sec-title .en{font:11px Georgia,serif;letter-spacing:6px;color:var(--muted);text-transform:uppercase;}
+.sec-title h2{font-size:clamp(28px,4vw,42px);margin:12px 0 0;letter-spacing:.16em;
+  background:linear-gradient(180deg,#fff9e2,#e8cf86 45%,#b8892c);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px auto 40px;max-width:280px;}
+.orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold2),transparent);}
+.orn i{width:8px;height:8px;border:1px solid var(--gold2);transform:rotate(45deg);}
+.orn i::after{content:"";display:block;width:2px;height:2px;background:var(--gold3);margin:2px;}
+
+.gold{background:linear-gradient(180deg,#fff9e2,#e8cf86 45%,#b8892c);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.8,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* 金饰角框 */
+.panel{position:relative;background:linear-gradient(180deg,rgba(30,22,10,.72),rgba(10,7,3,.72));
+  border:1px solid var(--line);}
+.panel::before,.panel::after{content:"";position:absolute;width:16px;height:16px;border:1px solid var(--gold2);}
+.panel::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+.panel::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:13px 34px;cursor:pointer;
+  border:1px solid rgba(212,175,55,.55);background:linear-gradient(180deg,rgba(212,175,55,.12),rgba(138,106,32,.05));
+  color:var(--gold3);font-family:var(--serif);font-size:15px;letter-spacing:.22em;overflow:hidden;
+  transition:.35s;box-shadow:0 0 18px rgba(212,175,55,.1),inset 0 0 14px rgba(212,175,55,.05);}
+.btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,246,208,.35),transparent);transform:skewX(-22deg);
+  animation:sheen 3.6s ease-in-out infinite;}
+@keyframes sheen{0%,55%{left:-70%;}85%,100%{left:130%;}}
+.btn:hover{border-color:var(--gold3);color:#fff9e2;transform:translateY(-2px);
+  box-shadow:0 0 34px rgba(212,175,55,.3),inset 0 0 22px rgba(212,175,55,.12);}
+
+/* ============ 导航 ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;height:66px;display:flex;align-items:center;
+  background:linear-gradient(180deg,rgba(7,5,2,.96),rgba(7,5,2,.72));border-bottom:1px solid var(--line);
+  backdrop-filter:blur(8px);transition:.3s;}
+.nav .brand{display:flex;align-items:center;gap:10px;margin-left:22px;font-size:19px;letter-spacing:.14em;font-weight:700;}
+.nav .brand svg{width:30px;height:30px;}
+.nav .links{display:flex;gap:4px;margin-left:auto;margin-right:20px;}
+.nav .links a{padding:9px 15px;font-size:14px;letter-spacing:.08em;color:rgba(247,230,168,.72);position:relative;transition:.25s;}
+.nav .links a::after{content:"";position:absolute;left:50%;bottom:4px;width:0;height:1px;background:var(--gold2);transition:.25s;transform:translateX(-50%);}
+.nav .links a:hover,.nav .links a.active{color:var(--gold3);}
+.nav .links a:hover::after,.nav .links a.active::after{width:60%;}
+.nav .menuBtn{display:none;margin-left:auto;margin-right:16px;background:none;border:1px solid var(--line);color:var(--gold3);padding:7px 12px;font-size:18px;}
+@media(max-width:820px){
+  .nav .links{display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;background:rgba(7,5,2,.98);margin:0;padding:10px 0;border-bottom:1px solid var(--line);}
+  .nav .links.open{display:flex;}
+  .nav .links a{text-align:center;padding:12px;}
+  .nav .menuBtn{display:block;}
+}
+
+/* ============ 英雄区 ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;padding:96px 18px 60px;}
+.emblem{width:min(38vh,290px);height:min(38vh,290px);filter:drop-shadow(0 0 20px rgba(212,175,55,.25));}
+.hero .eyebrow{margin-top:22px;font:11px Georgia,serif;letter-spacing:8px;color:rgba(247,230,168,.5);}
+.hero h1{font-size:clamp(46px,9vw,96px);margin:6px 0 0;letter-spacing:.2em;padding-left:.2em;font-weight:700;
+  background:linear-gradient(180deg,#fff9e2 0%,#f0d98c 32%,#c9a13a 60%,#8a6a20 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(212,175,55,.3));}
+.hero .sub{font-size:clamp(13px,2vw,18px);letter-spacing:.5em;color:rgba(247,230,168,.72);margin-top:8px;padding-left:.5em;}
+.hero .sub small{display:block;font-size:11px;letter-spacing:.3em;color:rgba(247,230,168,.4);margin-top:10px;}
+.hero .cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:36px;}
+.scrollHint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;color:rgba(247,230,168,.35);animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+/* ============ 源流 ============ */
+.srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{padding:28px 24px;}
+.card h3{font-size:20px;letter-spacing:.12em;margin:0 0 14px;color:var(--gold3);display:flex;align-items:center;gap:10px;}
+.card h3 .no{font:13px Georgia,serif;color:var(--gold2);border:1px solid var(--line);width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;transform:rotate(45deg);}
+.card h3 .no span{transform:rotate(-45deg);}
+.card p{font-size:14px;line-height:2;color:rgba(247,230,168,.68);margin:0 0 10px;}
+.card .tag{display:inline-block;font-size:12px;padding:4px 12px;margin:4px 6px 0 0;border:1px solid var(--line);color:var(--gold2);}
+
+/* 迁徙时间轴 */
+.timeline{position:relative;margin-top:10px;padding-left:8px;}
+.timeline::before{content:"";position:absolute;left:22px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,transparent,var(--gold2),transparent);}
+.tl{position:relative;padding:0 0 30px 62px;}
+.tl::before{content:"";position:absolute;left:16px;top:4px;width:13px;height:13px;background:var(--ink);border:1px solid var(--gold2);transform:rotate(45deg);box-shadow:0 0 10px rgba(212,175,55,.4);}
+.tl .yr{font:14px Georgia,serif;color:var(--gold2);letter-spacing:.1em;}
+.tl h4{font-size:18px;letter-spacing:.08em;margin:6px 0;color:var(--gold3);}
+.tl p{font-size:13.5px;line-height:1.9;color:rgba(247,230,168,.62);margin:0;}
+
+/* 字辈 */
+.beigen{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+.beigen .zi{width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:26px;
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(212,175,55,.08),transparent);color:var(--gold3);position:relative;}
+.beigen .zi::after{content:attr(data-i);position:absolute;top:2px;right:5px;font:9px Georgia,serif;color:var(--muted);}
+.beigen-note{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;line-height:1.9;}
+
+/* ============ 世系 ============ */
+.chain4{display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:wrap;margin:0 auto 44px;}
+.chain4 .node{width:180px;padding:22px 14px;text-align:center;}
+.chain4 .node .g{font:12px Georgia,serif;color:var(--gold2);letter-spacing:.14em;}
+.chain4 .node .n{font-size:24px;letter-spacing:.1em;margin:10px 0 6px;color:#fff6d0;}
+.chain4 .node .s{font-size:12px;color:var(--muted);}
+.chain4 .arw{display:flex;align-items:center;font-size:22px;color:var(--gold2);opacity:.6;}
+@media(max-width:760px){.chain4 .node{width:44%;}.chain4 .arw{display:none;}}
+
+.roster-tools{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:22px;}
+.roster-tools input,.roster-tools select{background:rgba(10,7,3,.8);border:1px solid var(--line);color:var(--gold3);
+  padding:10px 14px;font-family:var(--serif);font-size:14px;outline:none;}
+.roster-tools input:focus,.roster-tools select:focus{border-color:var(--gold2);}
+.sync-badge{display:inline-block;font:12px Georgia,serif;padding:4px 14px;border:1px solid var(--line);border-radius:20px;letter-spacing:.12em;color:var(--muted);background:rgba(10,7,3,.5);}
+.sync-badge.syncing{color:var(--gold3);border-color:var(--gold2);animation:syncPulse 1.2s ease-in-out infinite;}
+.sync-badge.ok{color:#9ad99a;border-color:rgba(154,217,154,.5);}
+.sync-badge.err{color:#e0a3a3;border-color:rgba(224,163,163,.5);}
+@keyframes syncPulse{0%,100%{opacity:1;}50%{opacity:.45;}}
+.gen-block{margin-bottom:16px;}
+.gen-h{display:flex;align-items:center;gap:12px;padding:12px 18px;cursor:pointer;
+  background:linear-gradient(90deg,rgba(212,175,55,.12),transparent);border-left:2px solid var(--gold2);font-size:17px;letter-spacing:.12em;}
+.gen-h .cnt{margin-left:auto;font:12px Georgia,serif;color:var(--muted);}
+.gen-body{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;padding:16px 18px;}
+.gen-body.hide{display:none;}
+.mem{display:flex;justify-content:space-between;gap:8px;padding:9px 12px;border:1px solid rgba(212,175,55,.16);background:rgba(0,0,0,.2);font-size:14px;}
+.mem .nm{color:var(--gold3);}
+.mem .sp{color:var(--muted);font-size:12px;}
+.mem.direct{border-color:var(--gold2);background:linear-gradient(90deg,rgba(212,175,55,.14),rgba(0,0,0,.2));}
+.mem.direct .nm::before{content:"◆";color:var(--gold2);font-size:9px;margin-right:6px;}
+
+/* ============ 祭祖 ============ */
+.worship{background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(158,43,30,.14),transparent 70%);}
+.altar-tabs{display:flex;justify-content:center;gap:0;margin:0 auto 30px;border:1px solid var(--line);width:max-content;max-width:100%;}
+.altar-tabs button{background:transparent;border:none;border-right:1px solid var(--line);color:rgba(247,230,168,.6);
+  padding:12px 26px;font-family:var(--serif);font-size:15px;letter-spacing:.16em;cursor:pointer;transition:.3s;}
+.altar-tabs button:last-child{border-right:none;}
+.altar-tabs button.active{background:linear-gradient(180deg,rgba(212,175,55,.2),transparent);color:#fff6d0;}
+.wpane{display:none;}
+.wpane.active{display:block;animation:fadeIn .5s;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+.shrine{position:relative;padding:36px;min-height:360px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(60,20,12,.28),rgba(10,7,3,.7));}
+.shrine-hall{text-align:center;}
+.shrine-hall .gate{font-size:clamp(26px,5vw,44px);letter-spacing:.3em;color:#fff2cf;padding-left:.3em;
+  text-shadow:0 0 24px rgba(212,175,55,.5);}
+.shrine-hall .plaque{display:inline-block;margin-bottom:18px;padding:8px 30px;border:2px solid var(--gold2);
+  background:linear-gradient(180deg,#7a1f16,#4a120c);color:#ffe6a8;font-size:22px;letter-spacing:.34em;padding-left:.34em;
+  box-shadow:0 6px 20px rgba(0,0,0,.5);}
+.shrine-hall .lantern{font-size:30px;color:var(--red2);margin:0 14px;animation:sway 3.5s ease-in-out infinite;display:inline-block;}
+@keyframes sway{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+.shrine-hall .desc{max-width:620px;margin:20px auto 0;font-size:14px;line-height:2;color:rgba(247,230,168,.7);}
+
+/* 供奉 */
+.offering-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;}
+@media(max-width:760px){.offering-grid{grid-template-columns:1fr;}}
+.tablet-wall{padding:24px;}
+.tablet-wall h3{text-align:center;font-size:16px;letter-spacing:.2em;color:var(--gold2);margin:0 0 20px;}
+.tablets{display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto;padding-right:6px;}
+.tablet{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(180deg,#2a1a0a,#160e05);
+  border:1px solid var(--line);border-radius:3px;font-size:14px;}
+.tablet .glyph{color:var(--gold2);font-size:16px;}
+.tablet .who{color:#ffe9b0;}
+.tablet .gen{color:var(--muted);font-size:12px;margin-left:auto;}
+.incense-box{text-align:center;padding:24px;}
+.censer{position:relative;width:150px;height:90px;margin:0 auto 18px;}
+.censer .bowl{position:absolute;bottom:0;left:15px;width:120px;height:46px;background:linear-gradient(180deg,#8a6a20,#3a2a0c);
+  border:2px solid var(--gold2);border-radius:8px 8px 40px 40px;box-shadow:0 6px 16px rgba(0,0,0,.5);}
+.stick{position:absolute;bottom:40px;width:3px;background:linear-gradient(180deg,#7a1f16,#c0392b);transform-origin:bottom;transition:.3s;}
+.stick .ember{position:absolute;top:-4px;left:-2px;width:7px;height:7px;border-radius:50%;background:#ff9b3d;box-shadow:0 0 8px #ff6a00;}
+.smoke{position:absolute;bottom:80px;width:8px;height:8px;border-radius:50%;background:rgba(247,230,168,.28);opacity:0;animation:smokeUp 3.6s linear infinite;}
+@keyframes smokeUp{0%{opacity:.5;transform:translateY(0) scale(.6);}100%{opacity:0;transform:translateY(-70px) scale(2.4);}}
+.incense-count{font-size:14px;color:var(--gold2);margin:14px 0;}
+.mini-btn{padding:9px 20px;font-size:13px;}
+.off-items{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px;}
+.off-item{cursor:pointer;padding:9px 14px;border:1px solid var(--line);font-size:13px;color:rgba(247,230,168,.7);transition:.25s;user-select:none;}
+.off-item:hover{border-color:var(--gold2);}
+.off-item.on{background:rgba(158,43,30,.4);color:#ffe9b0;border-color:var(--red2);}
+
+/* 祭拜仪式 */
+.rites{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.rite{padding:24px 18px;text-align:center;}
+.rite .icon{font-size:36px;line-height:1;margin-bottom:12px;}
+.rite h4{font-size:17px;letter-spacing:.12em;margin:0 0 8px;color:var(--gold3);}
+.rite p{font-size:12.5px;line-height:1.8;color:var(--muted);margin:0 0 16px;min-height:42px;}
+.rite .btn{width:100%;justify-content:center;font-size:13px;padding:10px;letter-spacing:.12em;}
+.kneel-figure{font-size:40px;transition:.3s;}
+.kneel-figure.do{animation:kneel .9s ease;}
+@keyframes kneel{0%,100%{transform:translateY(0) rotate(0);}45%{transform:translateY(10px) rotate(-8deg) scale(.9);}}
+.lamp{width:40px;height:52px;margin:0 auto 10px;position:relative;background:radial-gradient(circle at 50% 70%,#ffe9a8,#b8892c 55%,#5a3f12);
+  border-radius:50% 50% 45% 45%;box-shadow:0 0 24px rgba(255,180,60,.5);animation:flick 2.2s ease-in-out infinite;}
+.lamp::before{content:"";position:absolute;top:-14px;left:16px;width:8px;height:18px;background:radial-gradient(circle,#fff3c0,#ff9b3d);border-radius:50% 50% 50% 50%;animation:flick 1.1s ease-in-out infinite;}
+@keyframes flick{0%,100%{opacity:.85;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.12);}}
+.lamp.off{filter:grayscale(1) brightness(.6);box-shadow:none;animation:none;}
+.lamp.off::before{display:none;}
+
+/* 祈福灯笼 */
+.fu-form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0;}
+.fu-form input{flex:1;min-width:220px;max-width:420px;background:rgba(10,7,3,.85);border:1px solid var(--line);color:var(--gold3);padding:11px 14px;font-family:var(--serif);outline:none;}
+.fu-form input:focus{border-color:var(--gold2);}
+.lantern-wall{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:18px;max-height:300px;overflow:auto;}
+.lantern-card{position:relative;width:120px;padding:26px 10px 12px;text-align:center;
+  background:linear-gradient(180deg,#b8321f,#7c1e12);border-radius:40%/12%;box-shadow:0 6px 18px rgba(0,0,0,.4),inset 0 0 18px rgba(255,180,80,.3);
+  animation:sway 4s ease-in-out infinite;color:#ffe9b0;}
+.lantern-card .cap{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:44px;height:8px;background:var(--gold2);}
+.lantern-card .txt{font-size:12px;line-height:1.5;word-break:break-all;}
+.lantern-card .sig{display:block;font-size:11px;color:#ffd28a;margin-top:8px;opacity:.8;}
+.lantern-card .tassel{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);width:2px;height:16px;background:var(--gold2);}
+
+/* 祭文 */
+.eulogy{margin-top:30px;padding:28px;line-height:2.2;font-size:15px;color:rgba(247,230,168,.82);text-align:justify;}
+.eulogy h3{text-align:center;font-size:20px;letter-spacing:.24em;color:#ffe9b0;margin:0 0 18px;}
+.eulogy p{text-indent:2em;margin:0 0 12px;}
+
+/* 名人 */
+.fame-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+.fame{padding:22px 18px;}
+.fame .rank{font:12px Georgia,serif;letter-spacing:.1em;}
+.fame h4{font-size:18px;margin:8px 0;color:var(--gold3);}
+.fame .meta{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.fame p{font-size:13px;line-height:1.85;color:rgba(247,230,168,.66);margin:0;}
+.star{color:var(--gold2);letter-spacing:2px;}
+.note{margin-top:24px;padding:20px;font-size:13px;line-height:2;color:var(--muted);border:1px dashed var(--line);}
+
+/* 页脚 */
+footer{padding:48px 0 30px;border-top:1px solid var(--line);text-align:center;background:rgba(5,3,1,.7);}
+footer .fseal{font-size:30px;color:var(--gold2);}
+footer p{font-size:12px;color:var(--muted);line-height:2;margin:10px 0;}
+.toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(20px);background:#3a2810;
+  border:1px solid var(--gold2);color:#ffe9b0;padding:11px 24px;font-size:14px;border-radius:4px;opacity:0;
+  transition:.3s;z-index:99;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.topBtn{position:fixed;right:20px;bottom:24px;width:44px;height:44px;background:rgba(20,13,6,.9);
+  border:1px solid var(--gold2);color:var(--gold3);font-size:18px;cursor:pointer;opacity:0;transition:.3s;z-index:50;}
+.topBtn.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- 背景 -->
+<div class="bg">
+  <div class="bg-base"></div>
+  <div class="bg-rays"></div>
+  <canvas id="stars"></canvas>
+</div>
+<div class="vignette"></div>
+<div id="cursorGlow"></div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#d4af37" stroke-width="1"/><text x="20" y="28" text-anchor="middle" font-size="22" fill="#f7e6a8" font-family="serif">成</text></svg>
+    <span class="gold">成氏宗祠</span>
+  </a>
+  <button class="menuBtn" id="menuBtn">☰</button>
+  <div class="links" id="navLinks">
+    <a href="#top" class="active">首页</a>
+    <a href="#origin">源流</a>
+    <a href="#migrate">迁徙</a>
+    <a href="#lineage">世系</a>
+    <a href="#worship">祭祖</a>
+    <a href="#fame">名人</a>
+    <a href="lineage.html" target="_blank">族谱录入</a>
+  </div>
+</nav>
+
+<!-- 英雄区 -->
+<header class="hero" id="top">
+  <svg class="emblem" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#7a5a16"/><stop offset="22%" stop-color="#f7e6a8"/>
+        <stop offset="42%" stop-color="#c9a13a"/><stop offset="62%" stop-color="#fff6d0"/>
+        <stop offset="82%" stop-color="#b8892c"/><stop offset="100%" stop-color="#7a5a16"/>
+      </linearGradient>
+      <linearGradient id="gv" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fff9e2"/><stop offset="45%" stop-color="#e8cf86"/><stop offset="100%" stop-color="#a87f26"/>
+      </linearGradient>
+      <radialGradient id="cg"><stop offset="0%" stop-color="#f7e6a8" stop-opacity=".42"/><stop offset="100%" stop-color="#f7e6a8" stop-opacity="0"/></radialGradient>
+      <path id="tc" d="M200,200 m-148,0 a148,148 0 1,1 296,0 a148,148 0 1,1 -296,0"/>
+    </defs>
+    <circle cx="200" cy="200" r="192" fill="none" stroke="url(#g)" stroke-width="1" opacity=".4"/>
+    <circle cx="200" cy="200" r="184" fill="none" stroke="url(#g)" stroke-width=".7" opacity=".3" stroke-dasharray="2 7"/>
+    <g class="spin-slow" style="transform-origin:200px 200px;animation:spin 70s linear infinite">
+      <circle cx="200" cy="200" r="170" fill="none" stroke="url(#g)" stroke-width="1" opacity=".6"/>
+      <circle cx="200" cy="200" r="162" fill="none" stroke="url(#g)" stroke-width="6" opacity=".15" stroke-dasharray="2 20"/>
+      <circle cx="200" cy="200" r="162" fill="none" stroke="url(#g)" stroke-width="1" opacity=".7" stroke-dasharray="2 20"/>
+    </g>
+    <g style="transform-origin:200px 200px;animation:spin 40s linear infinite">
+      <text fill="url(#g)" font-size="12" letter-spacing="6.5" opacity=".72">
+        <textPath href="#tc" startOffset="0%">上谷世家 · 英德东水 · 一脉相承 · 世代流芳 · 上谷世家 · 英德东水 · 一脉相承 · 世代流芳 · </textPath>
+      </text>
+    </g>
+    <circle cx="200" cy="200" r="104" fill="url(#cg)"/>
+    <circle cx="200" cy="200" r="90" fill="#0b0804" stroke="url(#g)" stroke-width="1.4" opacity=".96"/>
+    <!-- 奇门遁甲 · 八卦九宫盘 -->
+    <g style="transform-origin:200px 200px;animation:spin 30s linear infinite">
+      <!-- 八卦爻：八方位排布 -->
+      <g fill="url(#g)">
+        <g><rect x="193" y="120" width="14" height="4.6" rx="1.2"/><rect x="193" y="127" width="14" height="4.6" rx="1.2"/><rect x="193" y="134" width="14" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(45 200 200)"><rect x="193" y="120" width="6" height="4.6" rx="1.2"/><rect x="201" y="120" width="6" height="4.6" rx="1.2"/><rect x="193" y="127" width="14" height="4.6" rx="1.2"/><rect x="193" y="134" width="14" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(90 200 200)"><rect x="193" y="120" width="14" height="4.6" rx="1.2"/><rect x="193" y="127" width="6" height="4.6" rx="1.2"/><rect x="201" y="127" width="6" height="4.6" rx="1.2"/><rect x="193" y="134" width="14" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(135 200 200)"><rect x="193" y="120" width="6" height="4.6" rx="1.2"/><rect x="201" y="120" width="6" height="4.6" rx="1.2"/><rect x="193" y="127" width="6" height="4.6" rx="1.2"/><rect x="201" y="127" width="6" height="4.6" rx="1.2"/><rect x="193" y="134" width="14" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(180 200 200)"><rect x="193" y="120" width="14" height="4.6" rx="1.2"/><rect x="193" y="127" width="6" height="4.6" rx="1.2"/><rect x="201" y="127" width="6" height="4.6" rx="1.2"/><rect x="193" y="134" width="6" height="4.6" rx="1.2"/><rect x="201" y="134" width="6" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(225 200 200)"><rect x="193" y="120" width="6" height="4.6" rx="1.2"/><rect x="201" y="120" width="6" height="4.6" rx="1.2"/><rect x="193" y="127" width="14" height="4.6" rx="1.2"/><rect x="193" y="134" width="6" height="4.6" rx="1.2"/><rect x="201" y="134" width="6" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(270 200 200)"><rect x="193" y="120" width="14" height="4.6" rx="1.2"/><rect x="193" y="127" width="14" height="4.6" rx="1.2"/><rect x="193" y="134" width="6" height="4.6" rx="1.2"/><rect x="201" y="134" width="6" height="4.6" rx="1.2"/></g>
+        <g transform="rotate(315 200 200)"><rect x="193" y="120" width="6" height="4.6" rx="1.2"/><rect x="201" y="120" width="6" height="4.6" rx="1.2"/><rect x="193" y="127" width="6" height="4.6" rx="1.2"/><rect x="201" y="127" width="6" height="4.6" rx="1.2"/><rect x="193" y="134" width="6" height="4.6" rx="1.2"/><rect x="201" y="134" width="6" height="4.6" rx="1.2"/></g>
+      </g>
+      <circle cx="200" cy="200" r="78" fill="none" stroke="url(#g)" stroke-width="1" opacity=".6"/>
+    </g>
+    <!-- 九宫格 + 洛书数 -->
+    <g fill="none" stroke="url(#g)" stroke-width="1.2" opacity=".9">
+      <rect x="164" y="164" width="72" height="72" rx="2"/>
+      <line x1="188" y1="164" x2="188" y2="236"/>
+      <line x1="212" y1="164" x2="212" y2="236"/>
+      <line x1="164" y1="188" x2="236" y2="188"/>
+      <line x1="164" y1="212" x2="236" y2="212"/>
+    </g>
+    <g font-family="Georgia,serif" font-size="15" font-weight="700" fill="url(#gv)" text-anchor="middle" opacity=".95">
+      <text x="176" y="181">4</text><text x="200" y="181">9</text><text x="224" y="181">2</text>
+      <text x="176" y="204">3</text><text x="200" y="204">5</text><text x="224" y="204">7</text>
+      <text x="176" y="227">8</text><text x="200" y="227">1</text><text x="224" y="227">6</text>
+    </g>
+    <!-- 中心太极（阴阳鱼，缓旋）-->
+    <g style="transform-origin:200px 200px;animation:spin 16s linear infinite reverse">
+      <circle cx="200" cy="200" r="17" fill="#0b0804" stroke="url(#g)" stroke-width="1.4"/>
+      <path d="M200,183 A17,17 0 0,1 200,217 A8.5,8.5 0 0,1 200,200 A8.5,8.5 0 0,0 200,183 Z" fill="url(#g)"/>
+      <circle cx="200" cy="191.5" r="2.5" fill="#0b0804"/>
+      <circle cx="200" cy="208.5" r="2.5" fill="url(#g)"/>
+    </g>
+  </svg>
+  <style>@keyframes spin{to{transform:rotate(360deg);}}</style>
+  <div class="eyebrow">THE CHENG CLAN · SHANGGU ANCESTRAL HALL</div>
+  <h1>成氏宗祠</h1>
+  <div class="sub">上谷世家 · 广东省英德市东华镇东水村<small>敬宗睦族 · 寻根问祖 · 世代流芳</small></div>
+  <div class="cta">
+    <a href="#worship" class="btn"><span>入祠祭祖</span><span>→</span></a>
+    <a href="#lineage" class="btn"><span>查阅世系</span><span>→</span></a>
+  </div>
+  <div class="scrollHint">向下 · 探寻一脉源流</div>
+</header>
+
+<!-- 源流 -->
+<section class="sec" id="origin">
+  <div class="wrap">
+    <div class="sec-title reveal"><div class="en">Origin &amp; Heritage</div><h2>姓氏源流 · 郡望堂号</h2></div>
+    <div class="orn reveal"><i></i></div>
+    <div class="srcgrid">
+      <div class="panel card reveal">
+        <h3><span class="no"><span>壹</span></span>得姓之源</h3>
+        <p>成姓为多源姓氏，主体出自<b class="gold">姬姓</b>。西周周文王之子<b class="gold">叔武</b>（郕叔武）受封于郕（今山东宁阳东北），春秋时郕国灭于齐，子孙"去邑为成"，奉叔武为得姓始祖。</p>
+        <p>另有芈姓（楚成得臣之后）、宋微子之后、吴国公族等支，以及匈奴、满族等少数民族汉化改姓。</p>
+        <span class="tag">姬姓为主</span><span class="tag">叔武得姓</span><span class="tag">多源融合</span>
+      </div>
+      <div class="panel card reveal">
+        <h3><span class="no"><span>贰</span></span>郡望堂号</h3>
+        <p>成氏以<b class="gold">上谷郡</b>（今河北怀来）为第一郡望，另有东郡、弘农郡。粤北、潮汕成氏宗祠门额多题"上谷世家"。</p>
+        <p>堂号有<b class="gold">上谷堂</b>（地望）、<b class="gold">永敬堂</b>（典故，源自春秋成回"行年七十常恐行节之亏"）等。</p>
+        <span class="tag">上谷郡望</span><span class="tag">上谷堂</span><span class="tag">永敬堂</span>
+      </div>
+      <div class="panel card reveal">
+        <h3><span class="no"><span>叁</span></span>本支源流</h3>
+        <p>据家族手写谱稿，本支始迁以<b class="gold">郎名</b>相传（成第一郎、成安萬一郎等），为粤北客家早期命名习俗，与英德东水村地域背景吻合。</p>
+        <p>近代字辈为<b class="gold">文—立—奇—上—悦—振—金—先—新</b>，代代相承，脉络清晰。</p>
+        <span class="tag">郎名相传</span><span class="tag">东水村落</span><span class="tag">字辈清晰</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 迁徙 -->
+<section class="sec" id="migrate">
+  <div class="wrap">
+    <div class="sec-title reveal"><div class="en">Migration</div><h2>迁徙之路 · 落基英德</h2></div>
+    <div class="orn reveal"><i></i></div>
+    <div class="panel reveal" style="padding:34px 30px;">
+      <div class="timeline">
+        <div class="tl reveal"><div class="yr">渊源</div><h4>浙江钱塘 · 中原望族</h4><p>成氏上谷一脉，历代辗转，族谱相传原籍浙江钱塘（今杭州）一带，为南迁之起点。</p></div>
+        <div class="tl reveal"><div class="yr">元末明初</div><h4>南迁入粤 · 途经南雄</h4><p>避乱南迁，途径南雄珠玑巷一带，辗转进入粤北。珠玑巷为岭南诸族共同的中转记忆。</p></div>
+        <div class="tl reveal"><div class="yr">开基</div><h4>英德九龙 · 乌坭村落</h4><p>清远英德成氏主体聚于九龙、石牯塘一带，永珍公家族开基，后裔分"九子十房"，遍布清远各地。</p></div>
+        <div class="tl reveal"><div class="yr">五房 · 万福公</div><h4>分支繁衍 · 东水成屋</h4><p>据《中华成氏源流宗史》，东水成屋为五房万福公之裔；族中相传落基祖自清新县鱼坝镇迁来，扎根黄陂东水（今东华镇东水村）。</p></div>
+        <div class="tl reveal"><div class="yr">近现代</div><h4>世代流芳 · 瓜瓞绵绵</h4><p>历经二十余世，枝繁叶茂。字辈"金—先—新—昊"一脉相承，后裔分布于英德、清远及更广地区。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 世系 -->
+<section class="sec" id="lineage">
+  <div class="wrap">
+    <div class="sec-title reveal"><div class="en">Lineage</div><h2>世系传承 · 字辈班序</h2></div>
+    <div class="orn reveal"><i></i></div>
+
+    <h3 class="reveal" style="text-align:center;font-size:18px;letter-spacing:.2em;color:var(--gold2);margin-bottom:18px;">本支字辈（据手写谱稿）</h3>
+    <div class="beigen reveal" id="beigen"></div>
+    <p class="beigen-note reveal">另有史料所载英德永珍公支字辈"荣大永世德正达林廷文章宏"等版本，与本支手稿字辈不同，尚待进一步查证衔接。</p>
+
+    <h3 class="reveal" style="text-align:center;font-size:18px;letter-spacing:.2em;color:var(--gold2);margin:44px 0 18px;">直系四代</h3>
+    <div class="chain4 reveal">
+      <div class="node panel"><div class="g">十八世</div><div class="n">成金富</div><div class="s">配 杨氏 · 祖父</div></div>
+      <div class="arw">→</div>
+      <div class="node panel"><div class="g">十九世</div><div class="n">成应先</div><div class="s">配 谢氏 · 父亲</div></div>
+      <div class="arw">→</div>
+      <div class="node panel"><div class="g">二十世</div><div class="n">成艺新</div><div class="s">配 刘氏 · 本支</div></div>
+      <div class="arw">→</div>
+      <div class="node panel"><div class="g">二十一世</div><div class="n">成昊轩</div><div class="s">新一代</div></div>
+    </div>
+
+    <h3 class="reveal" style="text-align:center;font-size:18px;letter-spacing:.2em;color:var(--gold2);margin:44px 0 18px;">历代世系名录（据手写谱稿整理）</h3>
+    <div class="roster-tools reveal">
+      <input id="rosterSearch" placeholder="搜索名讳 / 配偶，如：成金富、谢氏">
+      <select id="rosterGen"><option value="">全部世代</option></select>
+      <span id="rosterSync" class="sync-badge syncing">云端同步中…</span>
+    </div>
+    <div id="roster" class="reveal"></div>
+    <p class="beigen-note reveal">名录据家族手写谱稿整理，世代以"◆"标示本支直系。部分世代（如五世、二十二世）原稿未录人名，如实留白。完整录入与修订请进入"族谱录入"。</p>
+    <div style="text-align:center;margin-top:24px;" class="reveal"><a href="lineage.html" target="_blank" class="btn"><span>进入族谱录入（管理员可编辑）</span><span>→</span></a></div>
+  </div>
+</section>
+
+<!-- 祭祖 -->
+<section class="sec worship" id="worship">
+  <div class="wrap">
+    <div class="sec-title reveal"><div class="en">Ancestral Worship</div><h2>祠堂祭祖 · 慎终追远</h2></div>
+    <div class="orn reveal"><i></i></div>
+    <p class="reveal" style="text-align:center;max-width:720px;margin:0 auto 30px;font-size:14px;line-height:2;color:rgba(247,230,168,.7);">
+      祠堂是存放乡愁的陈列馆，也是灵魂的栖息地。祠堂若在，家族必兴。这里是族人后裔祭奠先贤、追思祖德之所。
+    </p>
+
+    <div class="altar-tabs reveal">
+      <button class="active" data-p="p-hall">祠堂</button>
+      <button data-p="p-offer">供奉</button>
+      <button data-p="p-rite">祭拜</button>
+    </div>
+
+    <!-- 祠堂 -->
+    <div class="wpane active panel reveal" id="p-hall">
+      <div class="shrine shrine-hall">
+        <div class="plaque">成氏宗祠</div>
+        <div><span class="lantern">❁</span><span class="gate">上谷世家</span><span class="lantern">❁</span></div>
+        <p class="desc">大门高悬"成氏宗祠"匾额，两侧灯笼高挂，石狮镇守。相传本支发祥于英德九龙乌坭村，每年重九，族人齐聚，焚香叩拜，敬宗睦族。进入祠堂，可行上香、供奉、祈福诸礼。</p>
+        <div style="margin-top:26px;"><button class="btn" id="enterHall"><span>进入祠堂</span><span>→</span></button></div>
+      </div>
+    </div>
+
+    <!-- 供奉 -->
+    <div class="wpane panel reveal" id="p-offer">
+      <div class="offering-grid" style="padding:24px;">
+        <div class="tablet-wall" style="border:1px solid var(--line);">
+          <h3>历代先祖牌位</h3>
+          <div class="tablets" id="tablets"></div>
+        </div>
+        <div>
+          <div class="incense-box" style="border:1px solid var(--line);">
+            <h3 style="font-size:16px;letter-spacing:.16em;color:var(--gold2);margin:0 0 16px;">香炉 · 敬香</h3>
+            <div class="censer" id="censer"><div class="bowl"></div></div>
+            <div class="incense-count">已敬香 <b class="gold" id="incenseCount">0</b> 柱</div>
+            <button class="btn mini-btn" id="incenseBtn"><span>上香</span></button>
+            <div class="off-items" id="offItems">
+              <span class="off-item" data-o="鲜花">鲜花</span><span class="off-item" data-o="清茶">清茶</span>
+              <span class="off-item" data-o="三牲">三牲</span><span class="off-item" data-o="果品">果品</span>
+              <span class="off-item" data-o="香烛">香烛</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 祭拜 -->
+    <div class="wpane panel reveal" id="p-rite">
+      <div class="rites" style="padding:24px;">
+        <div class="rite panel">
+          <div class="kneel-figure" id="kneelFig">🙏</div>
+          <h4>跪拜礼</h4>
+          <p>仿真跪拜，表达敬意，慎终追远。</p>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">已叩拜 <b class="gold" id="kneelCount">0</b> 次</div>
+          <button class="btn mini-btn" id="kneelBtn"><span>行跪拜礼</span></button>
+        </div>
+        <div class="rite panel">
+          <div class="lamp" id="lamp"></div>
+          <h4>长明灯</h4>
+          <p>灯火长明，照亮先人归途，福泽绵长。</p>
+          <button class="btn mini-btn" id="lampBtn"><span>点亮长明灯</span></button>
+        </div>
+        <div class="rite panel">
+          <div class="icon">🏮</div>
+          <h4>挂灯笼祈福</h4>
+          <p>灯笼代表吉祥，寄托对先人的敬畏与祈愿。</p>
+          <div class="fu-form"><input id="fuText" maxlength="30" placeholder="写下祈福语，如：愿家族兴旺、子孙平安"><button class="btn mini-btn" id="fuBtn"><span>挂灯</span></button></div>
+          <div class="lantern-wall" id="lanternWall"></div>
+        </div>
+      </div>
+
+      <div class="eulogy panel" style="margin:0 24px 24px;">
+        <h3>祭祖文</h3>
+        <p>维公元二〇二六年岁次丙午，英德东水成氏后裔，谨以清酌庶馐、香烛之仪，致祭于成氏历代高曾祖考妣之灵前，曰：</p>
+        <p>溯我成氏，肇自姬周；郕叔受封，去邑为成。上谷望族，源远流长；瓜瓞绵绵，枝叶芬芳。历世迁徙，自浙入粤；辗转南雄，落基英德。东水一脉，郎名相传；字辈有序，世代相承。</p>
+        <p>今我后裔，齐聚祠前，焚香叩首，敬献衷肠。感先祖之厚德，启后昆之新章。祈家族之和睦，愿子孙之安康。伏惟尚飨！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 名人 -->
+<section class="sec" id="fame">
+  <div class="wrap">
+    <div class="sec-title reveal"><div class="en">Notable Figures</div><h2>历史名人 · 同宗考证</h2></div>
+    <div class="orn reveal"><i></i></div>
+    <div class="fame-grid">
+      <div class="fame panel reveal"><div class="rank gold">本支始迁祖</div><h4>成永珍（字国宝）</h4><div class="meta">元末明初 · 原籍浙江钱塘 → 英德九龙</div><p>英德成氏主体多尊其为入粤始祖，开基九龙乌坭村，九子十房后裔遍布清远。本支属其第五房万福公一支的说法见诸族谱史料，但字辈尚待衔接核实。</p><div style="margin-top:10px;" class="star">★★★</div></div>
+      <div class="fame panel reveal"><div class="rank gold">姓氏始祖</div><h4>成叔武（郕叔武）</h4><div class="meta">西周初 · 郕国（今山东宁阳）</div><p>周文王之子，成姓得姓始祖，上谷郡望所自出。距今约三千年，属姓氏文化层面的始祖认同，非可考证的直系血缘。族谱尊其为始祖。</p><div style="margin-top:10px;" class="star">★★★</div></div>
+      <div class="fame panel reveal"><div class="rank gold">同姓名人</div><h4>成公绥 · 成无己 · 成玄英</h4><div class="meta">西晋文学家 / 金代名医 / 唐代道教学者</div><p>皆为北方成姓名人，与英德本支无地域与字辈交集，时代远早于本支可考起点，属同姓同名，不具同宗参考价值。</p><div style="margin-top:10px;" class="star">★</div></div>
+    </div>
+    <div class="note panel reveal">
+      <b class="gold">考证说明：</b>经查证，历史名人中尚无一位能可靠认定为英德东水本支的同宗先祖。真正站得住脚的，是本支始迁祖（成永珍）与姓氏文化层面的得姓始祖（成叔武）。请勿将"上谷堂"直接等同于与某位北方成姓名人同宗——堂号只标识地望认同，不等于房支血缘。本页内容为基于公开史料与谱稿的<strong>可能性推演</strong>，不构成血缘认定；最终结论须以本支族谱、碑刻墓志或基因检测为据。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fseal">成</div>
+  <p>上谷世家 · 广东省英德市东华镇东水村 · 成氏宗祠</p>
+  <p>敬宗睦族 · 慎终追远 · 世代流芳</p>
+  <p style="opacity:.6;">族谱数据由宗亲共同维护 · 修改后自动同步云端 · 本站内容供寻根参考</p>
+</footer>
+
+<button class="topBtn" id="topBtn" title="回到顶部">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="wbcloud.js"></script>
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ===== 线上访问：把 sharecode 透传给站内所有 .html 链接 ===== */
+  (function(){
+    var m = location.search.match(/[?&]sharecode=([^&]+)/);
+    if(!m) return;
+    var sc = 'sharecode=' + encodeURIComponent(m[1]);
+    Array.prototype.forEach.call(document.querySelectorAll('a[href$=".html"]'), function(a){
+      var href = a.getAttribute('href');
+      if(href.indexOf('?') < 0) a.setAttribute('href', href + '?' + sc);
+    });
+  })();
+
+  /* ===== 星空粒子 ===== */
+  (function(){
+    var c=$('stars'), ctx=c.getContext('2d'), W=0,H=0, ps=[], dpr=Math.min(window.devicePixelRatio||1,2);
+    function init(){
+      ps=[]; var n=Math.min(120,Math.max(50,Math.floor(W/12)));
+      for(var i=0;i<n;i++) ps.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,
+        vy:-(Math.random()*.18+.03),a:Math.random()*.5+.1,ph:Math.random()*6.28});
+    }
+    function resize(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);init();}
+    function draw(t){ctx.clearRect(0,0,W,H);
+      for(var i=0;i<ps.length;i++){var p=ps[i];p.y+=p.vy;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}
+        var al=p.a*(.5+.5*Math.sin(t*.001+p.ph));ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
+        ctx.fillStyle='rgba(247,230,168,'+al.toFixed(3)+')';ctx.shadowBlur=6;ctx.shadowColor='rgba(212,175,55,.8)';ctx.fill();}
+      ctx.shadowBlur=0;requestAnimationFrame(draw);}
+    addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+  })();
+
+  /* ===== 鼠标光晕 + 点击粒子 ===== */
+  (function(){
+    var g=$('cursorGlow');
+    addEventListener('mousemove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';});
+  })();
+
+  /* ===== 滚动渐入 ===== */
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    els.forEach(function(el){io.observe(el);});
+  })();
+
+  /* ===== 导航 ===== */
+  (function(){
+    var btn=$('menuBtn'),links=$('navLinks');
+    btn.addEventListener('click',function(){links.classList.toggle('open');});
+    links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open');});});
+    var secs=['top','origin','migrate','lineage','worship','fame'].map($);
+    var navs=links.querySelectorAll('a[href^="#"]');
+    addEventListener('scroll',function(){
+      var y=scrollY+120,cur='top';
+      secs.forEach(function(s){if(s&&s.offsetTop<=y)cur=s.id;});
+      navs.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+      $('topBtn').classList.toggle('show',scrollY>500);
+    });
+    $('topBtn').addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'});});
+  })();
+
+  function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show');},2000);}
+
+  /* ===== 字辈 ===== */
+  (function(){
+    var chars=['文','立','奇','上','悦','振','金','先','新'];
+    $('beigen').innerHTML=chars.map(function(c,i){return '<div class="zi" data-i="'+(i+1)+'">'+c+'</div>';}).join('');
+  })();
+
+  /* ===== 世系名录 ===== */
+  var ROSTERS = [
+    ["始祖","成第一郎","夏氏",1],["高祖","成安萬一郎","黄氏",1],["曾祖","成膺一郎","黄氏、曾氏",1],
+    ["三代","成念三郎","吕氏",0],["先祖","成念四郎","何氏",0],["四世","成泰三郎","罗氏",1],
+    ["五世","","",1],["六世","成等","凌氏、林氏",1],
+    ["七世","成文科","汪氏",0],["七世","成文魁","李氏",0],["七世","成文亮","邱氏",0],
+    ["八世","成钦","张氏",0],["八世","成淳","谢氏",0],["八世","成监","源氏",0],["八世","成锦","傅氏",0],["八世","成书","黄氏",0],["八世","成念","",0],
+    ["九世","成立德","曾氏",0],["九世","成立仁","黎氏",0],["九世","成立记","谢氏",0],["九世","成立维","孙氏、林氏",0],["九世","成立初","林氏",0],["九世","成立龙","林氏",0],["九世","成立伦","孙氏、杨氏",0],["九世","成立先","刘氏、黄氏",0],
+    ["十世","成翼","邓氏、张氏、徐氏",0],["十世","成清","陈氏",0],["十世","成弘翼","杨氏",0],["十世","成安","彭氏",0],["十世","成文","刘氏",0],["十世","成丰","何氏",0],["十世","成明","彭氏、曾氏",0],["十世","成恩","万氏",0],
+    ["十一世","成奇志","",0],["十一世","成奇昌","邱氏",0],["十一世","成奇位","谢氏、朱氏、温氏",0],["十一世","成奇全","陈氏",0],["十一世","成奇仁","林氏",0],["十一世","成奇忠","张氏、缪氏",0],
+    ["十二世","成招□","赖氏",0],["十二世","成能文","钟氏",0],["十二世","成文義","",0],["十二世","成全","",0],["十二世","成全伯","",0],
+    ["十三世","成犀","杨氏、曾氏",0],["十三世","成序","吕氏",0],["十三世","成华","林氏、郭氏",0],["十三世","成上贞","何氏",0],["十三世","成上德","谢氏",0],["十三世","成上宁","彭氏",0],["十三世","成上容","张氏",0],["十三世","成上贤","林氏",0],["十三世","成上郁","",0],["十三世","成上威","",0],["十三世","成上仁","邓氏、谢氏",0],["十三世","成上义","谢氏",0],["十三世","成上礼","黄氏",0],["十三世","成上志","",0],["十三世","成上达","谢氏",0],["十三世","成上美","欧氏",0],["十三世","成上奇","张氏",0],["十三世","成上儒","张氏",0],
+    ["十四世","成名世","吕氏",0],["十四世","成悦周","林氏",0],["十四世","成悦腾","林氏",0],["十四世","成悦文","徐氏、廖氏",0],
+    ["十五世","成纬琦","官氏、郭氏",0],["十五世","成腾","何氏",0],["十五世","成乙","张氏",0],["十五世","成绵","张氏、曾氏",0],["十五世","成动","郑氏",0],["十五世","成满","凌氏",0],["十五世","成贵","邹氏",0],["十五世","成华","曾氏、赖氏",0],
+    ["十六世","成上珩","罗氏",0],["十六世","成观球","张氏",0],["十六世","成梅","郭氏",0],["十六世","成上朝","林氏",0],["十六世","成雲","曾氏",0],["十六世","成上禄","缪氏",0],["十六世","成上智","黎氏",0],["十六世","成悦志","陈氏",0],["十六世","成有宗","林氏",0],["十六世","成孝宗","谢氏",0],["十六世","成月龢","张氏",0],["十六世","成乾振","缪氏",0],["十六世","成寿表","",0],["十六世","成乾昌","",0],["十六世","成乾德","",0],["十六世","成永明","",0],["十六世","成永表","",0],["十六世","成永福","",0],
+    ["十七世","成振旅","曾氏",0],["十七世","成振龙","赵氏",0],["十七世","成振球","邹氏",0],["十七世","成德兴","官氏、郭氏",0],["十七世","成德召","朱氏",0],["十七世","成德耀","杨氏、林氏、范氏、陈氏",0],["十七世","成德文","邓氏",0],["十七世","德华","黄氏、陈氏",0],["十七世","德发","缪氏、范氏",0],["十七世","德龙","吕氏",0],["十七世","德太","许氏",0],["十七世","德全","陈氏",0],["十七世","成德元","林氏、杨氏、黎氏",0],["十七世","成振平","",0],["十七世","成连瑞","",0],["十七世","成连福","",0],["十七世","成平安","",0],["十七世","成金全","",0],["十七世","成宗全","",0],
+    ["十八世","成金茂","罗氏、曾氏",0],["十八世","成金首","谢氏",0],["十八世","成金富","杨氏",1],
+    ["十九世","成品先","杨氏",0],["十九世","成永先","王氏",0],["十九世","成仲先","杨氏",0],["十九世","成玉先","朱氏",0],["十九世","成应先","谢氏",1],
+    ["二十世","成福新","张氏",0],["二十世","成禄新","杨氏",0],["二十世","成寿新","吴氏",0],["二十世","成金新","缪氏",0],["二十世","成增新","余氏",0],["二十世","成之新","方氏",0],["二十世","成建新","余氏",0],["二十世","成财新","胡氏",0],["二十世","成平新","林氏",0],["二十世","成红新","",0],["二十世","成卫新","张氏",0],["二十世","成艺新","刘氏（已离异）",1],
+    ["二十一世","成云飞","",0],["二十一世","成保为","",0],["二十一世","成荣","",0],["二十一世","成利达","",0],["二十一世","成权飞","",0],["二十一世","成超","",0],["二十一世","成聪","",0],["二十一世","成明彬","",0],["二十一世","成昊轩","",1],
+    ["二十二世","","",0]
+  ];
+  (function(){
+    // 成员数据转行格式：[世代, 名讳, 配偶, 直系标记]
+    function toRows(list){
+      return list.map(function(m){
+        return [m.gen || "", m.name || "", m.spouse || "", (m.branch === "直系") ? 1 : 0];
+      });
+    }
+    var gens=[],map={};
+    function buildIndex(rows){
+      gens=[]; map={};
+      rows.forEach(function(r){if(!map[r[0]]){map[r[0]]=[];gens.push(r[0]);}map[r[0]].push(r);});
+    }
+    var sel=$('rosterGen');
+    function fillGens(){
+      sel.innerHTML='<option value="">全部世代</option>';
+      gens.forEach(function(g){var o=document.createElement('option');o.value=g;o.textContent=g;sel.appendChild(o);});
+    }
+    function render(){
+      var q=($('rosterSearch').value||'').trim(), gf=sel.value, html='';
+      gens.forEach(function(g){
+        var arr=map[g].filter(function(r){if(gf&&g!==gf)return false;if(q&&(r[1]+r[2]).indexOf(q)<0)return false;return true;});
+        if(!arr.length)return;
+        html+='<div class="gen-block"><div class="gen-h" data-gen="'+g+'">'+g+'<span class="cnt">'+arr.length+' 位</span></div><div class="gen-body">';
+        arr.forEach(function(r){
+          var nm=r[1]||'<span style="color:var(--muted)">（原稿未录）</span>';
+          html+='<div class="mem'+(r[3]?' direct':'')+'"><span class="nm">'+nm+'</span><span class="sp">'+(r[2]||'—')+'</span></div>';
+        });
+        html+='</div></div>';
+      });
+      $('roster').innerHTML=html||'<p style="text-align:center;color:var(--muted);padding:30px;">未找到匹配成员</p>';
+      Array.prototype.forEach.call($('roster').querySelectorAll('.gen-h'),function(h){h.addEventListener('click',function(){h.nextElementSibling.classList.toggle('hide');});});
+    }
+    $('rosterSearch').addEventListener('input',render);sel.addEventListener('change',render);
+
+    /* 先用本地数据秒开 */
+    buildIndex(ROSTERS); fillGens(); render();
+
+    /* ===== 云端同步：与族谱录入页共享同一份成员数据 ===== */
+    var syncEl=$('rosterSync');
+    function syncState(cls,txt){ if(syncEl){syncEl.className='sync-badge '+cls;syncEl.textContent=txt;} }
+    try{
+      if(typeof WorkBuddyCloud === "undefined" || !WorkBuddyCloud.createWorkBuddyCloud){ syncState('err','云端未加载·本地数据'); return; }
+      var cloud = WorkBuddyCloud.createWorkBuddyCloud({
+        endpoint: "https://wbapp-qdsbusxfn2ny8kfj41bgyq.app.workbuddy.host",
+        publishableKey: "wbpk_QDSbuSXfn2ny8KfJ41bgYQ_QRQOG53DlCqrtGgTIcUUttxc9JBcKRI7"
+      });
+      if(!cloud || !cloud.database){ syncState('err','云端未加载·本地数据'); return; }
+      syncState('syncing','云端同步中…');
+      cloud.database.from("clan_data").select("members").eq("doc_key","main").maybeSingle().then(function(res){
+        var row = res && res.data;
+        if(res && res.error){ syncState('err','云端不可用·本地数据'); return; }
+        if(row && Array.isArray(row.members) && row.members.length){
+          buildIndex(toRows(row.members)); fillGens(); render();
+          syncState('ok','已同步云端');
+        }else{
+          syncState('ok','云端暂无·本地数据');
+        }
+      }).catch(function(){ syncState('err','云端不可用·本地数据'); });
+    }catch(e){ syncState('err','云端异常·本地数据'); }
+  })();
+
+  /* ===== 祭祖：本地存档 ===== */
+  var WK='chengWorship_v1';
+  function wstate(){try{return JSON.parse(localStorage.getItem(WK)||'{}');}catch(e){return {};}}
+  function wsave(o){localStorage.setItem(WK,JSON.stringify(o));}
+  var ws=wstate();
+
+  /* 标签切换 */
+  (function(){
+    var tabs=document.querySelectorAll('.altar-tabs button');
+    tabs.forEach(function(b){b.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+      document.querySelectorAll('.wpane').forEach(function(p){p.classList.remove('active');});
+      $(b.dataset.p).classList.add('active');
+    });});
+    $('enterHall').addEventListener('click',function(){
+      document.querySelectorAll('.altar-tabs button')[1].click();toast('已进入祠堂 · 供奉先祖');
+    });
+  })();
+
+  /* 牌位 */
+  (function(){
+    var notable=[["历代","成氏历代高曾祖考妣之灵位"],["始祖","成第一郎 府君"],["高祖","成安萬一郎 府君"],["曾祖","成膺一郎 府君"],
+      ["四世","成泰三郎 府君"],["六世","成等 府君"],["七世","成文科 府君"],["十三世","成上仁 府君"],
+      ["十八世","成金富 府君"]];
+    $('tablets').innerHTML=notable.map(function(t){return '<div class="tablet"><span class="glyph">▣</span><span class="who">'+t[1]+'</span><span class="gen">'+t[0]+'</span></div>';}).join('');
+  })();
+
+  /* 上香 */
+  (function(){
+    var count=ws.incense||0;
+    function upd(){ $('incenseCount').textContent=count; }
+    function renderSticks(){
+      var box=$('censer');
+      box.querySelectorAll('.stick,.smoke').forEach(function(e){e.remove();});
+      for(var i=0;i<Math.min(count,9);i++){
+        var s=document.createElement('div');s.className='stick';s.style.left=(58+i*4)+'px';s.style.height=(34+i*2)+'px';
+        s.innerHTML='<span class="ember"></span><span class="smoke" style="left:0;animation-delay:'+(i*.4)+'s"></span>';
+        box.appendChild(s);
+      }
+    }
+    upd();renderSticks();
+    $('incenseBtn').addEventListener('click',function(){
+      count++;ws.incense=count;wsave(ws);upd();renderSticks();toast('敬香一柱 · 香火绵延');
+    });
+    $('offItems').querySelectorAll('.off-item').forEach(function(it){
+      if((ws.off||[]).indexOf(it.dataset.o)>=0)it.classList.add('on');
+      it.addEventListener('click',function(){it.classList.toggle('on');
+        var on=[];$('offItems').querySelectorAll('.off-item.on').forEach(function(x){on.push(x.dataset.o);});
+        ws.off=on;wsave(ws);toast('已'+(it.classList.contains('on')?'献上':'撤下')+'供品：'+it.dataset.o);
+      });
+    });
+  })();
+
+  /* 跪拜 */
+  (function(){
+    var c=ws.kneel||0;$('kneelCount').textContent=c;
+    $('kneelBtn').addEventListener('click',function(){
+      c++;ws.kneel=c;wsave(ws);$('kneelCount').textContent=c;
+      var f=$('kneelFig');f.classList.remove('do');void f.offsetWidth;f.classList.add('do');toast('行跪拜礼 · 慎终追远');
+    });
+  })();
+
+  /* 长明灯 */
+  (function(){
+    var on=!!ws.lamp;$('lamp').classList.toggle('off',!on);$('lampBtn').firstElementChild.textContent=on?'熄灭长明灯':'点亮长明灯';
+    $('lampBtn').addEventListener('click',function(){
+      on=!on;ws.lamp=on;wsave(ws);$('lamp').classList.toggle('off',!on);
+      $('lampBtn').firstElementChild.textContent=on?'熄灭长明灯':'点亮长明灯';toast(on?'长明灯已点亮 · 灯火长明':'长明灯已熄灭');
+    });
+  })();
+
+  /* 祈福灯笼 */
+  (function(){
+    var list=ws.fu||[];
+    function render(){
+      $('lanternWall').innerHTML=list.map(function(f){
+        return '<div class="lantern-card"><span class="cap"></span><div class="txt">'+esc(f.t)+'</div><span class="sig">— '+esc(f.n||'宗亲')+' 敬祈</span><span class="tassel"></span></div>';
+      }).join('');
+    }
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    render();
+    $('fuBtn').addEventListener('click',function(){
+      var t=$('fuText').value.trim();if(!t){toast('请先写下祈福语');return;}
+      list.unshift({t:t,n:(ws.myName||'')});if(list.length>30)list.pop();ws.fu=list;wsave(ws);
+      $('fuText').value='';render();toast('祈福灯已挂起 · 愿遂人安');
+    });
+    $('fuText').addEventListener('keydown',function(e){if(e.key==='Enter')$('fuBtn').click();});
+  })();
+
+})();
+</script>
+</body>
+</html>
